@@ -1,0 +1,29 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX context: <java:tv.ShapeShift.nsl.functions.> 
+
+CONSTRUCT { ?no core:hasMO ?mo } 
+WHERE 
+{
+	#?no 		owl:sameAs <%s> .
+	
+	?no			rdf:type core:ImplicitObject .
+	
+	#?no			core:hasTextualAnnotation [ core:key "expression"^^xsd:string ; core:value ?val ].
+	
+	?no 		core:hasExpression ?val .
+	FILTER fn:contains(?val, "Video") .
+	
+	?mo			rdf:type 		core:MediaItem ;
+				core:contains	?annotation .
+	?annotation rdfs:label		'Video' ;
+				rdf:type		?annotationClass .
+	?annotationClass rdfs:label "MediaType" .
+	
+}
+

@@ -1,0 +1,9 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+
+DELETE {  <%1$s> nsl:hasBeenProcessed ?val }
+WHERE  { <%1$s> nsl:hasBeenProcessed ?val } ;
+
+INSERT {  <%1$s> nsl:hasBeenProcessed ?ts }
+WHERE  {
+	BIND ( now() AS ?ts ) .
+}

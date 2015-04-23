@@ -1,0 +1,243 @@
+<mxGraph alternateEdgeStyle="verticalEdge" dropEnabled="1">
+	<add as="isNarrativeItem"><![CDATA[
+		function(cell)
+		{
+			console.log(this.model.getValue(cell));
+			return (this.isLinkableObject(cell) || this.isLink(cell));		
+		}
+	]]></add>
+	<add as="isLinkableObject"><![CDATA[
+		function(cell)
+		{
+			return (this.isNarrativeObject(cell) || this.isDecisionPoint(cell));		
+		}
+	]]></add>
+	<add as="isNarrativeObject"><![CDATA[
+		function(cell)
+		{
+			return (this.isStructuredNarrativeObject(cell) || this.isAtomicNarrativeObject(cell) || this.isImplicitObject(cell));		
+		}
+	]]></add>
+	<add as="isStructuredNarrativeObject"><![CDATA[
+		function(cell)
+		{
+			return (this.isLinkStructure(cell) || this.isBinStructure(cell) || this.isLayerStructure(cell));		
+		}
+	]]></add>					
+	<add as="isLinkStructure"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'linkstructure');		
+		}
+	]]></add>
+	<add as="isBinStructure"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'binstructure');		
+		}
+	]]></add>
+	<add as="isLayerStructure"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'layerstructure');		
+		}
+	]]></add>
+	<add as="isAtomicNarrativeObject"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'atomicnarrativeobject');		
+		}
+	]]></add>
+	<add as="isImplicitObject"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'implicitobject');		
+		}
+	]]></add>	
+	<add as="isDecisionPoint"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'decisionpoint');		
+		}
+	]]></add>
+	<add as="isLink"><![CDATA[
+		function(cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'link');		
+		}
+	]]></add>
+	<add as="isStartItem"><![CDATA[
+		function(cell)
+		{
+			if ( this.isLinkStructure(cell.parent) ) {
+				return ( cell.parent.getAttribute('startItem') == cell.getId() );
+			} else {
+				return false;
+			}
+		}
+	]]></add>							
+	<add as="isLeadingLayer"><![CDATA[
+		function(cell)
+		{
+			if ( this.isLayerStructure(cell.parent) ) {
+				return ( cell.parent.getAttribute('leadingLayer') == cell.getId() );
+			} else {
+				return false;
+			}
+		}
+	]]></add>									
+	<add as="isAutoSizeCell"><![CDATA[
+		function(cell)
+		{
+			return this.isSwimlane(cell);
+		}
+	]]></add>
+	<add as="isSwimlane"><![CDATA[
+		function (cell)
+		{
+			return mxUtils.isNode(this.model.getValue(cell), 'swimlane');
+		}
+	]]></add>
+	<add as="isAllowOverlapParent"><![CDATA[
+		function(cell)
+		{
+			console.log("Allow overlap: " + !this.isSwimlane(cell.parent));
+			return !this.isSwimlane(cell.parent);
+		}
+	]]></add>
+	<add as="getTooltipForCell"><![CDATA[
+		function(cell)
+		{
+			var href = cell.getAttribute('href');
+			href = (href != null && href.length > 0) ?
+				'<br>'+href : '';
+			var maxlen = 30;
+			var desc = cell.getAttribute('description');
+			if (desc == null || desc.length == 0)
+			{
+				desc = '';
+			}
+			else if (desc.length < maxlen)
+			{
+				desc = '<br>'+desc;
+			}
+			else
+			{
+				desc = '<br>'+desc.substring(0, maxlen)+'...';
+			}
+			return '<b>'+cell.getAttribute('label')+
+					'</b> ('+cell.getId()+')'+href+desc+
+					'<br>Edges: '+cell.getEdgeCount()+
+					'<br>Children: '+cell.getChildCount();
+		}
+	]]></add>
+	<add as="convertValueToString">
+		function(cell)
+		{
+			return cell.getAttribute('label');
+		}
+	</add>
+	<mxGraphModel as="model">
+		<add as="valueForCellChanged"><![CDATA[
+			function(cell, value)
+			{
+				var previous = null;
+				
+				if (isNaN(value.nodeType))
+				{
+					previous = cell.getAttribute('label');
+					cell.setAttribute('label', value);
+				}
+				else
+				{
+					previous = cell.value;
+					cell.value = value;
+				}
+				
+				return previous;
+			}
+		]]></add>
+		<root>
+			<mxCell id="0"/>
+			<LinkStructure label="root">
+				<mxCell style="swimlane;horizontal=1;fillColor=#ff9999" parent="0" vertex="1">
+					<mxGeometry x="10" y="10" width="1120" height="340" as="geometry"/>
+				</mxCell>
+			</LinkStructure>
+		</root>
+	</mxGraphModel>
+	<mxStylesheet as="stylesheet">
+		<add as="defaultVertex">
+			<add as="shape" value="label"/>
+			<add as="perimeter" value="rectanglePerimeter"/>
+			<add as="labelBackgroundColor" value="none"/>
+			<add as="fontSize" value="10"/>
+			<add as="align" value="center"/>
+			<add as="verticalAlign" value="middle"/>
+			<add as="strokeColor" value="black"/>
+		</add>
+		<add as="defaultEdge">
+			<add as="shape" value="connector"/>
+			<add as="labelBackgroundColor" value="white"/>
+			<add as="rounded" value="1"/>
+			<add as="edgeStyle" value="elbowEdgeStyle"/>
+			<add as="endArrow" value="classic"/>
+			<add as="fontSize" value="10"/>
+			<add as="align" value="center"/>
+			<add as="verticalAlign" value="middle"/>
+			<add as="strokeColor" value="black"/>
+		</add>
+		<add as="verticalEdge">
+			<add as="elbow" value="vertical"/>
+		</add>
+		<add as="straightEdge">
+			<add as="shape" value="connector"/>
+			<add as="endArrow" value="classic"/>
+		</add>
+		<add as="arrowEdge">
+			<add as="shape" value="arrow"/>
+			<add as="fillColor" value="red"/>
+		</add>
+		<add as="swimlane">
+			<add as="shape" value="swimlane"/>
+			<add as="fontSize" value="12"/>
+			<add as="startSize" value="27"/>
+			<add as="horizontal" value="0"/>
+			<add as="verticalAlign" value="top"/>
+			<add as="align" value="center"/>			
+			<add as="fontColor" value="black"/>
+			<add as="labelBackgroundColor" value="none"/>
+		</add>
+		<add as="group">
+			<add as="shape" value="rectangle"/>
+			<add as="rounded" value="1"/>
+			<add as="verticalAlign" value="top"/>
+			<add as="strokeColor" value="black"/>
+			<add as="dashed" value="1"/>
+			<add as="opacity" value="50"/>
+		</add>
+		<add as="rounded">
+			<add as="rounded" value="1"/>
+		</add>
+		<add as="ellipse">
+			<add as="shape" value="ellipse"/>
+			<add as="perimeter" value="ellipsePerimeter"/>
+		</add>
+		<add as="rhombus">
+			<add as="shape" value="rhombus"/>
+			<add as="perimeter" value="rhombusPerimeter"/>
+		</add>
+		<add as="actor">
+			<add as="shape" value="actor"/>
+		</add>
+		<add as="symbol">
+			<add as="shape" value="image"/>
+			<add as="perimeter" value="rectanglePerimeter"/>
+			<add as="labelBackgroundColor" value="white"/>
+			<add as="fontSize" value="10"/>
+			<add as="align" value="center"/>
+			<add as="verticalAlign" value="top"/>
+			<add as="verticalLabelPosition" value="bottom"/>
+		</add>
+	</mxStylesheet>
+</mxGraph>

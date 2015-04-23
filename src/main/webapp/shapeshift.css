@@ -1,0 +1,44 @@
+body {
+	color: black; 
+	background-color: white; 
+	font-family: Arial, sans-serif; 
+}
+
+#p_warn {
+	color: rgba(0,255,0,1);	
+	font-size: small;
+}
+
+#p_error {
+	color: rgba(255,0,0,1);	
+}
+
+#p_debug {
+	font-size: x-small;
+}
+
+.true {
+	background-color: rgba(192,192,192,1); 
+}
+
+.false {
+	background-color: #E0E0E0; 
+	font-size: small;
+}
+
+a {
+	text-decoration: none;
+	color: rgba(192,0,0,1);
+}
+
+a:hover {
+	cursor : pointer; 
+}
+
+th {
+	background-color: #E0E0E0; 
+}
+
+footer {
+	font-size: x-small;	
+}

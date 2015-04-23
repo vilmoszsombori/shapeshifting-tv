@@ -1,0 +1,12 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+
+SELECT ?root
+WHERE 
+{
+	?root rdf:type nsl:LinkStructure .
+	?p nsl:hasNarrativeRoot ?root .
+}
+
+

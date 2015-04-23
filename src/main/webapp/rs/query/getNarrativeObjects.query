@@ -1,0 +1,24 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX protege: <http://protege.stanford.edu/plugins/owl/protege#>
+PREFIX xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#>
+PREFIX swrl: <http://www.w3.org/2003/11/swrl#>
+PREFIX swrlb: <http://www.w3.org/2003/11/swrlb#>
+
+
+
+SELECT ?l ?file
+WHERE 
+{
+	?ano core:isNarrativeItemOf production:ID8f2edad163bb4adbbcad0c5a0650c23d .
+	?ano core:refersTo ?mo .
+	?ano rdfs:label ?l .
+	?mo core:hasMediaContent ?mc .
+	?mc core:hasFile ?file .        
+}
+
+

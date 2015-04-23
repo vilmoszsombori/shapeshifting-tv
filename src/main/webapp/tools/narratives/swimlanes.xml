@@ -1,0 +1,476 @@
+<mxGraphModel>
+	<root>
+		<mxCell id="0" />
+		<!-- <mxCell id="1" parent="0" /> -->
+		<LinkStructure hasStartItem="IDce676ee9d08b42a9a307bdfbde108d35"
+			label="root" id="IDfd59d84cc6554380a665d84270c159a1">
+			<mxCell style="swimlane;horizontal=1;fillColor=#ff9999"
+				vertex="1" parent="0">
+				<mxGeometry x="10" y="10" width="1120" height="340"
+					as="geometry" />
+			</mxCell>
+		</LinkStructure>
+		<ImplicitObject label="EstablishingBin"
+			id="IDce676ee9d08b42a9a307bdfbde108d35">
+			<selectionRule>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													
+													SELECT ?binItem
+													WHERE {	?binItem nsl:hasMediaContent [ 
+																		nsl:before [] ; 
+																		nsl:contains production:EstablishingShot ; 
+																		nsl:hasDuration ?dur ] .
+																	FILTER( ?dur < 20000 ) }
+													ORDER BY RAND() 
+													LIMIT 3
+												)]]>
+			</selectionRule>
+			<expression>
+<![CDATA[select( 'MediaType' = 'Video' )]]>
+			</expression>
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<Link label="" id="ID326c24065a384059b2d95d19170b2d6c">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="ID70343dcc1c2a4c8f8763addd7270a6dd" target="IDfd332f85d7f8439a8895d6fe9b2ba3f5"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<Link label="" id="ID32faebe4d6bd4819af5b573d57ff969e">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="IDfd332f85d7f8439a8895d6fe9b2ba3f5" target="IDa35a893a7d644a408b1be828eae5015e"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<Link label="" id="ID6a9aa44af8f942b5b24cc398ab7f166e">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="IDef3745b6390f4ec6b2f77a78432398c5" target="ID70343dcc1c2a4c8f8763addd7270a6dd"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<Link label="" id="ID71a4e39df0334ba08db8613baea8e455">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="ID20e82fb9032749e595f5e5c6ceeeb22e" target="IDef3745b6390f4ec6b2f77a78432398c5"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<Link label="" id="ID672fe30cabaa4bb68cd67432b58d56ac">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="IDb7970c11b4fc48a9b1c82014a5bfeef0" target="ID20e82fb9032749e595f5e5c6ceeeb22e"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<Link label="" id="IDbe0d420e593749979eb08565d1e08da0">
+			<mxCell style="straightEdge" parent="IDfd59d84cc6554380a665d84270c159a1"
+				source="IDce676ee9d08b42a9a307bdfbde108d35" target="IDb7970c11b4fc48a9b1c82014a5bfeef0"
+				edge="1">
+				<mxGeometry relative="1" as="geometry"/>
+			</mxCell>
+		</Link>
+		<ImplicitObject label="BeforeHallBin"
+			id="IDb7970c11b4fc48a9b1c82014a5bfeef0">
+			<selectionRule>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+													
+													SELECT ?binItem ?l ?rin 
+													WHERE {
+														{
+															SELECT ?binItem ?l ?rin 
+															WHERE {
+																?binItem a nsl:MediaObject ; 
+																	nsl:hasRelativeIn ?rin ; 
+																	nsl:hasMediaContent [ 
+																		nsl:contains [ rdfs:label "Audience" ] ; 
+																		nsl:before [ rdfs:label "Hall" ] ;
+																		nsl:hasDuration ?dur 
+																	] ; 
+																	rdfs:label ?l .
+																	FILTER( ?dur < 20000 ) .
+																
+																# hasn't been played yet
+																OPTIONAL { 
+																	?binItem nsl:hasBeenProcessed ?p 
+																} . 
+																FILTER( !BOUND(?p) )
+
+															} ORDER BY RAND() LIMIT 2
+														} 
+														
+														UNION
+														
+														{
+															SELECT ?binItem ?l ?rin 
+															WHERE {
+																?binItem a nsl:MediaObject ; 
+																	nsl:hasRelativeIn ?rin ; 
+																	nsl:hasMediaContent ?mc ; 
+																	rdfs:label ?l .
+																?mc nsl:before [ rdfs:label "Hall" ] ;
+																	nsl:hasDuration ?dur .
+																	FILTER( ?dur < 20000 ) .																
+																
+																OPTIONAL { 
+																	?mc nsl:contains ?a . 
+																	?a rdfs:label "Audience"
+																} . 
+																FILTER( !BOUND(?a) ) .
+																
+																# hasn't been played yet
+																OPTIONAL { 
+																	?binItem nsl:hasBeenProcessed ?p 
+																} . 
+																FILTER( !BOUND(?p) )
+																
+															} ORDER BY RAND() LIMIT 2
+														} .
+														
+													} ORDER BY ?rin)]]>
+			</selectionRule>
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry x="110" y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<ImplicitObject label="IntroBin"
+			id="ID20e82fb9032749e595f5e5c6ceeeb22e">
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry x="220" y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<ImplicitObject label="RehearsalBin"
+			id="IDef3745b6390f4ec6b2f77a78432398c5">
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry x="340" y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<BinStructure label="ConcertBin" id="ID70343dcc1c2a4c8f8763addd7270a6dd">
+			<terminationCondition>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+													
+													ASK {
+														?contextVar rdfs:label "Song" ; 
+															nsl:hasValue ?songValue .
+															
+														?song rdf:type production:Song ; 
+															rdfs:label ?songLabel ; 
+															nsl:hasRelativeIn ?srin ; 
+															nsl:hasRelativeOut ?srout . 
+														FILTER regex(?songLabel, ?songValue, "i") .
+														
+														{
+															SELECT (MAX(?t) AS ?maxT)
+															WHERE { 
+																?mo nsl:hasBeenProcessed ?t ; 
+																	nsl:hasMediaContent [ nsl:hasType "audio" ] 
+															}
+														} .
+														
+														?mo nsl:hasBeenProcessed ?t ; 
+															nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+															rdfs:label ?l ; 
+															nsl:hasRelativeIn ?rin ; 
+															nsl:hasRelativeOut ?rout .
+														FILTER( ?t = ?maxT && ?rout < ?srout ) .
+													})]]>
+			</terminationCondition>
+			<mxCell style="swimlane;horizontal=1;fillColor=#9999ff"
+				parent="IDfd59d84cc6554380a665d84270c159a1" vertex="1">
+				<mxGeometry x="470" y="20" width="410" height="290" as="geometry" />
+			</mxCell>
+		</BinStructure>
+		<LayerStructure hasLeadingLayer="ID240b3b62fcca4ba6909151fece1ffa21"
+			label="ConcertLayers" id="IDd455aa2badec4e2c8e55bf1fe4c12c7e">
+			<mxCell style="swimlane;horizontal=0;fillColor=#99ff99"
+				parent="ID70343dcc1c2a4c8f8763addd7270a6dd" vertex="1">
+				<mxGeometry x="10" y="35" width="390" height="240" as="geometry" />
+			</mxCell>
+		</LayerStructure>
+		<LinkStructure hasStartItem="ID24acab509b4c4530ba98ef65586679a2"
+			label="AudioLayer" id="ID240b3b62fcca4ba6909151fece1ffa21">
+			<mxCell style="swimlane;horizontal=1;fillColor=#ff9999"
+				parent="IDd455aa2badec4e2c8e55bf1fe4c12c7e" vertex="1">
+				<mxGeometry x="40" y="10" width="340" height="80" as="geometry" />
+			</mxCell>
+		</LinkStructure>
+		<ImplicitObject label="AudioBin"
+			id="ID24acab509b4c4530ba98ef65586679a2">
+			<selectionRule>
+<![CDATA[sparql(
+                                              		PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+											
+													SELECT ?binItem ?ml ?rin ?rout
+													WHERE {
+														{
+															SELECT (MIN( ?moRin ) AS ?m)
+															WHERE { 
+																?cv a nsl:ContextVariable ; 
+																	rdfs:label "Song" ; 
+																	nsl:hasValue ?s .
+																
+																?song a production:Song ; 
+																	rdfs:label ?l ; 
+																	nsl:hasRelativeIn ?rin ; 
+																	nsl:hasRelativeOut ?rout . 
+																FILTER regex(?l, ?s, "i") .
+																
+																?mo a nsl:MediaObject ; 
+																	nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+																	nsl:hasRelativeIn ?moRin . 
+																FILTER( ?rin <= ?moRin && ?moRin < ?rout ) .
+																OPTIONAL { ?mo nsl:hasBeenProcessed ?processed } .
+																FILTER(!BOUND(?processed)) .
+															}
+														} .
+														?binItem a nsl:MediaObject ; 
+															nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+															nsl:hasRelativeIn ?rin ; 
+															nsl:hasRelativeOut ?rout ; 
+															rdfs:label ?ml . 
+														FILTER( ?rin = ?m ) .
+													})]]>
+			</selectionRule>
+			<expression>
+<![CDATA[select( 'MediaType' = 'Audio' )]]>
+			</expression>
+			<mxCell style="fillColor=#9999ff" parent="ID240b3b62fcca4ba6909151fece1ffa21"
+				vertex="1">
+				<mxGeometry x="10" y="35" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<LinkStructure hasStartItem="IDc443395ce5a64b14973eba55a554631e"
+			label="VideoLayer" id="ID0bad82d9d9ca456fb2f99ceb22dcd06f">
+			<mxCell style="swimlane;horizontal=1;fillColor=#ff9999"
+				parent="IDd455aa2badec4e2c8e55bf1fe4c12c7e" vertex="1">
+				<mxGeometry x="40" y="110" width="340" height="120" as="geometry" />
+			</mxCell>
+		</LinkStructure>
+		<ImplicitObject label="RemainingVideos"
+			id="ID7e761446126d4ca29691af1c3fe090e0">
+			<selectionRule>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem ( IF(?a = ?x, 1, 0) AS ?p )
+													WHERE 
+													{
+														{ 
+															SELECT ?rout
+															WHERE { 
+																?video	nsl:hasBeenProcessed ?timestamp ;
+																		nsl:contains [ rdfs:label "Video" ] ;
+																		nsl:hasRelativeOut ?rout .
+																{
+																	SELECT ( MAX(?ts) AS ?maxTimestamp ) 
+																	WHERE { 
+																		?iVideo nsl:hasBeenProcessed ?ts ; 
+																				nsl:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?timestamp = ?maxTimestamp ) 
+															}
+														} .
+														
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	nsl:hasBeenProcessed ?tsAudio ;
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rout < ?rOutAudio ) .
+														
+														?binItem a nsl:MediaObject ;
+															nsl:hasRelativeIn ?rout ; 
+															nsl:contains [ rdfs:label "Video" ] ;
+															nsl:hasMediaContent ?mediaContent .
+																																										
+														OPTIONAL { ?binItem nsl:hasBeenProcessed ?processed } .
+														FILTER( !BOUND(?processed) ) .
+														
+														OPTIONAL {
+															?mediaContent nsl:contains [ rdfs:label ?x ] .
+														}
+
+														OPTIONAL {
+															?cv a nsl:ContextVariable ; 
+																rdfs:label "Focus" ; 
+																nsl:hasValue ?a .
+														}
+													} 
+													ORDER BY DESC(?p) RAND() LIMIT 1
+												)]]>
+			</selectionRule>
+			<terminationCondition>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													ASK {
+														{ 
+															SELECT ?rOutVideo
+															WHERE { 
+																?video	nsl:hasBeenProcessed ?tsVideo ;
+																		nsl:contains [ rdfs:label "Video" ] ;
+																		nsl:hasRelativeOut ?rOutVideo .
+																{
+																	SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+																	WHERE { 
+																		?iVideo nsl:hasBeenProcessed ?tsV ; 
+																				nsl:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?tsVideo = ?maxTsVideo ) 
+															}
+														} .
+													
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	nsl:hasBeenProcessed ?tsAudio ;
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rOutVideo < ?rOutAudio )
+													})]]>
+			</terminationCondition>
+			<mxCell style="fillColor=#9999ff" parent="ID0bad82d9d9ca456fb2f99ceb22dcd06f"
+				vertex="1">
+				<mxGeometry x="240" y="35" width="90" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<Link label="Should there be more videos?" id="ID657ad620205941ed93d87591b67277ea">
+			<mxCell style="straightEdge" parent="IDd455aa2badec4e2c8e55bf1fe4c12c7e"
+				source="IDc443395ce5a64b14973eba55a554631e" target="ID7e761446126d4ca29691af1c3fe090e0"
+				edge="1">
+				<mxGeometry relative="1" as="geometry">
+					<Array as="points">
+						<mxPoint x="170" y="210" />
+						<mxPoint x="90" y="188" />
+					</Array>
+				</mxGeometry>
+			</mxCell>
+		</Link>
+		<ImplicitObject label="FirstVideo"
+			id="IDc443395ce5a64b14973eba55a554631e">
+			<selectionRule>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem
+													WHERE {
+														{ 	SELECT ?audio ?aRin
+															WHERE { 
+																?audio nsl:hasBeenProcessed ?tsAudio ; 
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeIn ?aRin ;
+																	
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . 
+																FILTER( ?tsAudio = ?maxTsAudio ) 			 
+															}		
+														} .
+
+														?binItem nsl:hasRelativeIn ?aRin ;
+																nsl:contains [ rdfs:label "Video"].
+
+														#?binItem nsl:alignsWith ?audio .
+
+														OPTIONAL { ?binItem nsl:hasBeenProcessed ?processed } .
+														FILTER(!BOUND(?processed)) .
+													}
+													ORDER BY RAND() LIMIT 1
+												)]]>
+			</selectionRule>
+			<mxCell style="fillColor=#9999ff" parent="IDd455aa2badec4e2c8e55bf1fe4c12c7e"
+				vertex="1">
+				<mxGeometry x="50" y="145" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<ImplicitObject label="AfterHallBin"
+			id="IDfd332f85d7f8439a8895d6fe9b2ba3f5">
+			<selectionRule>
+<![CDATA[sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													
+													SELECT ?binItem
+													WHERE {	
+														?binItem nsl:hasMediaContent [ 
+																	nsl:after [] ;
+																	nsl:hasDuration ?dur ] .
+															FILTER( ?dur < 20000 ) .
+													}
+													ORDER BY RAND() 
+													LIMIT 3
+												)]]>
+			</selectionRule>
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry x="920" y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+		<ImplicitObject label="Conclusion"
+			id="IDa35a893a7d644a408b1be828eae5015e">
+			<mxCell style="fillColor=#9999ff" parent="IDfd59d84cc6554380a665d84270c159a1"
+				vertex="1">
+				<mxGeometry x="1040" y="20" width="80" height="30" as="geometry" />
+			</mxCell>
+		</ImplicitObject>
+	</root>
+</mxGraphModel>

@@ -1,0 +1,28 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX session: <http://www.ist-nm2.org/ontology/session#>
+
+SELECT ?linkstr ?val
+WHERE 
+{
+	#?linkstr core:hasTextualAnnotation ?ta .
+	#?ta core:key "selectionrule"^^xsd:string .
+	#?ta core:value ?val .
+	
+	?linkstr session:hasSelectionRule ?val.
+	
+	#?mo1 core:hasRelativeIn ?annotation1 .
+	
+	#?mo1 core:canFollow ?mo2 .
+
+
+	#?mo1 temp:hasRelativeOut ?out .
+		
+	#?mo1 rdfs:label 	?label1 .
+	#?annotation1 rdfs:label 	?label2 .
+	#?mo2 rdfs:label 	?label2 .
+}
+LIMIT 5

@@ -1,0 +1,29 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX context: <java:tv.ShapeShift.nsl.filters.> 
+PREFIX f: <java:com.hp.hpl.jena.sparql.function.library.>
+
+CONSTRUCT { ?video core:alignsWith ?audio } 
+WHERE 
+{
+	?audio		rdf:type 		core:MediaItem ;
+				core:contains	[ rdfs:label "Audio" ] ;
+				core:hasRelativeIn ?rin .
+				
+#				core:contains	[ 
+#				 	rdfs:label	?instance1 ;
+#				 	rdf:type	[ rdfs:label "RIN" ] ] .
+
+	?video		rdf:type 		core:MediaItem ;
+				core:contains	[ rdfs:label "Video" ] ;
+				core:hasRelativeIn ?rin .
+				
+#				core:contains	[ 
+#				 	rdfs:label	?instance2 ;
+#				 	rdf:type	[ rdfs:label "RIN" ] ] .
+
+#	FILTER (context:stringEqual(?instance1, ?instance2)).
+}
+

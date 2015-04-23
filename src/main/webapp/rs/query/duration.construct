@@ -1,0 +1,16 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+
+CONSTRUCT { 
+	<%1$s> core:hasDuration %2$s
+} WHERE {
+	OPTIONAL {
+		<%1$s> core:hasDuration ?d
+	} .
+	FILTER( !BOUND(?d) ) 
+}
+

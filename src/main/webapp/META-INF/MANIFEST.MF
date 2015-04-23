@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Class-Path: log4j-1.2.17.jar commons-configuration-1.9.jar commons-lan
+ g-2.6.jar commons-logging-1.1.1.jar slf4j-log4j12-1.7.5.jar slf4j-api
+ -1.7.5.jar pellet-common-2.3.4-ansell.jar aterm-java-1.8.2-p1.jar jjt
+ raveler-0.6.jar shared-objects-1.4.9-p1.jar jgrapht-jdk1.5-0.7.3.jar 
+ xsdlib-20030225.jar relaxngDatatype-20030225.jar xercesImpl-2.10.0.ja
+ r xml-apis-1.4.01.jar jena-2.6.4.jar iri-0.8.jar icu4j-3.4.4.jar pell
+ et-core-2.3.4-ansell.jar pellet-owlapiv3-2.3.4-ansell.jar owlapi-api-
+ 3.4.4.3-ansell.jar abstract-service-loader-0.3.jar sesame-model-2.7.1
+ .jar sesame-util-2.7.1.jar sesame-rio-api-2.7.1.jar owlapi-impl-3.4.4
+ .3-ansell.jar owlapi-parsers-3.4.4.3-ansell.jar owlapi-tools-3.4.4.3-
+ ansell.jar pellet-query-2.3.4-ansell.jar arq-2.8.7.jar wstx-asl-3.2.9
+ .jar stax-api-1.0.1.jar lucene-core-2.3.1.jar pellet-jena-2.3.4-ansel
+ l.jar antlr-runtime-3.4.jar stringtemplate-3.2.1.jar antlr-2.7.7.jar 
+ metainf-services-1.4.jar pellet-rules-2.3.4-ansell.jar pellet-datatyp
+ es-2.3.4-ansell.jar pellet-el-2.3.4-ansell.jar jstl-1.2.jar jgraphx-1
+ .10.4.1.jar gson-2.2.2.jar
+

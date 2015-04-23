@@ -1,0 +1,43 @@
+@prefix nsl: <http://shapeshifting.tv/ontology/nsl#>
+@prefix production: <http://shapeshifting.tv/ontology/production#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+[agaPlaylistBarriers1:
+	(?no rdfs:label "main_body")
+	(?no nsl:hasBinItem ?binItem)
+	(?binItem rdfs:label ?label)
+	->
+	(?binItem nsl:hasPlaylistBarrier "true"^^xsd:boolean)
+]	
+
+[agaPlaylistBarriers2:
+	(?no nsl:hasTextualAnnotation ?ta)
+	(?ta nsl:key "name"^^xsd:string)
+	(?ta nsl:value "introductions"^^xsd:string),	
+	->
+	(?no nsl:hasPlaylistBarrier "true"^^xsd:boolean)
+]
+
+[agaInteractions:
+	(?mo nsl:hasTemporalAnnotation ?ta)
+	(?ta nsl:type "trigger_region"^^xsd:string)
+	(?ta nsl:beginTime ?beginTime)
+	timecode(?beginTime, ?clipBegin)
+	(?ta nsl:endTime ?endTime)
+	timecode(?endTime, ?clipEnd)
+	(?ta nsl:name ?name)
+	regex(?name, '[\s]*keyword\\([\s]*[\']?([^\']*)[\']?[\s]*\\)', ?text)
+	strConcat('interaction?', ?text, '=1', ?action1)
+	makeTemp(?interaction)
+	->
+	(?mo nsl:hasInteraction ?interaction)
+	(?interaction rdf:type nsl:Interaction)
+	(?interaction rdfs:label ?text)
+	(?interaction nsl:clipBegin ?clipBegin)
+	(?interaction nsl:clipEnd ?clipEnd)
+	(?interaction nsl:actionUrl ?action1)
+	(?interaction nsl:imgUrl 'rs/img/lantern.png')	
+	//print("Keyword", ?text, ?clipBegin, ?clipEnd)	
+]

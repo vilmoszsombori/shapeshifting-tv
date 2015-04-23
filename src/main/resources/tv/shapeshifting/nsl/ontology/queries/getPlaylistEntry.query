@@ -1,0 +1,17 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+SELECT ?type ?src ?clipBegin ?clipEnd ?fileDuration
+WHERE 
+{
+	<%s> nsl:hasMediaContent ?mc ;
+		nsl:hasTemporalAnnotation ?ta .
+	?ta nsl:type "core.inOutTime"^^xsd:string ;
+		nsl:beginTime ?clipBegin ;
+		nsl:endTime ?clipEnd .
+	?mc nsl:hasFile ?src ;
+		nsl:hasType ?type ;
+		nsl:hasDuration ?fileDuration . 
+}

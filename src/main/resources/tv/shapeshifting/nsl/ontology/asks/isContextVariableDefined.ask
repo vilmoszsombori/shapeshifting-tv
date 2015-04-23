@@ -1,0 +1,10 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+ASK { 
+    ?contextVariable a nsl:ContextVariable ;
+    	rdfs:label "%1$s"^^xsd:string ;
+        nsl:hasValue ?value 
+} 

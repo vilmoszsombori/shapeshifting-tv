@@ -1,0 +1,22 @@
+PREFIX ta2: <http://www.example.org/TA2.owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+
+
+
+SELECT ?person 
+WHERE 
+{
+ 	
+			
+	 ?voice_active_person_state rdf:type ta2:VoiceActivePersonState . 	
+   ?voice_active_person_state ta2:hasStartTime ?start_time .
+   ?person ta2:hasState ?voice_active_person_state .
+
+}
+
+ORDER BY DESC (?start_time)
+LIMIT 4
+
+

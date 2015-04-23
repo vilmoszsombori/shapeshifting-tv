@@ -1,0 +1,30 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX context: <java:tv.ShapeShift.nsl.functions.> 
+PREFIX f: <java:com.hp.hpl.jena.sparql.function.library.>
+
+CONSTRUCT { ?mo2 core:canFollow ?mo1 } 
+WHERE 
+{
+	?mo1 		 rdf:type 		core:MediaItem ;
+				 core:contains	[ 
+				 	rdfs:label	?instance1 ;
+				 	rdf:type	[ rdfs:label "ROUT" ] ] .
+	?annotation rdfs:label ?instance1 .
+	?mo2 		 rdf:type 		core:MediaItem ;
+				 core:contains	[ 
+				 	rdfs:label	?instance2 ;
+				 	rdf:type	[ rdfs:label "RIN" ] ] .
+
+	
+	FILTER (?mo1 != ?mo2 && context:stringEqual(?instance1, ?instance2)).
+	
+	#FILTER context:stringEqual(?instance1, ?instance2)
+
+	#FILTER regex(?class, "RIN") 
+	#FILTER context:hasBeenPlayed(?mo)
+	#FILTER regex(?label1, "CA-clip-2010-04-16_20_11_01_3637")		
+}
+

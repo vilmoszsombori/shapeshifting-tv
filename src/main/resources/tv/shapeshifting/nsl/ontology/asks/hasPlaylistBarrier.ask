@@ -1,0 +1,9 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+ASK {
+	<%s> nsl:hasPlaylistBarrier "true"^^xsd:boolean .
+}
+
+

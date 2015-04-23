@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#"
+     xml:base="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#after -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#after">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <owl:inverseOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#before"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#before -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#before">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#by -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#by">
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Protagonist"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Performance"/>
+                    <rdf:Description rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Rehearsal"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#directlyAfter -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#directlyAfter">
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:domain rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:subPropertyOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#after"/>
+        <owl:inverseOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#directlyBefore"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#directlyBefore -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#directlyBefore">
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:domain rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+        <rdfs:subPropertyOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#before"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#of -->
+
+    <owl:ObjectProperty rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#of">
+        <rdfs:range rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Song"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Performance"/>
+                    <rdf:Description rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Rehearsal"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Interview -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Interview">
+        <rdfs:subClassOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Performance -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Performance">
+        <rdfs:subClassOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Person -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Person"/>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Place -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Place"/>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Protagonist -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Protagonist">
+        <rdfs:subClassOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Rehearsal -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Rehearsal">
+        <rdfs:subClassOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Song -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Song"/>
+    
+
+
+    <!-- http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Transitional -->
+
+    <owl:Class rdf:about="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Transitional">
+        <rdfs:subClassOf rdf:resource="http://t2.doc.gold.ac.uk/ShapeShift/rs/owl/myvideos2.owl#Event"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

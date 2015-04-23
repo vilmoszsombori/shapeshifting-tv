@@ -1,0 +1,79 @@
+@prefix core: <http://www.ist-nm2.org/ontology/core#>
+@prefix production: <http://www.ist-nm2.org/ontology/production#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+@prefix owl: <http://www.w3.org/2002/07/owl#> 
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#>
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#>
+@prefix swrl: <http://www.w3.org/2003/11/swrl#>
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#>
+
+[selectionRule:
+
+	(?linkstr core:hasTextualAnnotation ?ta),
+	(?ta core:key "selectionrule"^^xsd:string),
+	(?ta core:value ?val),
+	
+  ->
+
+	(?linkstr core:hasSelectionRule ?val),
+]
+
+[editingRule:
+
+	(?linkstr core:hasTextualAnnotation ?ta),
+	(?ta core:key "EditingRule"^^xsd:string),
+	(?ta core:value ?val),
+	
+  ->
+
+	(?linkstr core:hasEditingRule ?val),
+]
+
+[terminationCondition:
+
+	(?no core:hasTextualAnnotation ?ta),
+	(?ta core:key "terminationcondition"^^xsd:string),
+	(?ta core:value ?val),
+	
+  ->
+
+	(?no core:hasTerminationCondition ?val),
+]
+
+[linkCondition:
+
+	(?link core:hasTextualAnnotation ?ta),
+	(?ta core:key "condition"^^xsd:string),
+	(?ta core:value ?val),
+	isConditionSatisfied(?val),
+	
+  ->
+
+	(?link core:isEnabled "true"^^xsd:boolean),
+]
+
+[expression:
+
+	(?no core:hasTextualAnnotation ?ta),
+	(?ta core:key "expression"^^xsd:string),
+	(?ta core:value ?val),
+	
+  ->
+
+	(?no core:hasExpression ?val),
+]
+
+[linkCondition1:
+	(?no core:hasLinkCondition ?condition)
+	(?no rdfs:label ?label)
+	evaluateArithmeticExpression(?condition, ?x)
+	->
+	(?no core:isEnabled ?x)
+	print("Link", ?condition, ?x)
+]
+
+
+
+

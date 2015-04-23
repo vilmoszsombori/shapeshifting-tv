@@ -1,0 +1,8 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+
+ASK {
+	<%s> a nsl:StructuredNarrativeObject .
+}
+
+

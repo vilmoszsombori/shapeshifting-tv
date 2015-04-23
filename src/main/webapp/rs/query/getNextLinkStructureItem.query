@@ -1,0 +1,16 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX context: <java:tv.ShapeShift.nsl.filters.> 
+
+SELECT ?no ?condition ?value
+WHERE 
+{
+	?link core:hasSource <%s> ;
+		  core:hasDestination ?no .
+
+	OPTIONAL { 
+		?link core:hasLinkCondition ?condition ; core:isEnabled ?value .
+	} .
+
+	FILTER( ?value > 0 || !bound(?condition) )
+}

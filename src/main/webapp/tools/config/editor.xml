@@ -1,0 +1,428 @@
+<mxEditor defaultGroup="group" defaultEdge="connector" tasksWindowImage="images/properties.gif">
+<!-- 
+	The following line is used to dynamically add a configuration hook for various backends.
+	The hook must have an ASP.NET extension because IIS does not handle any other extensions.
+	In the Dotnet and Java server examples, this hook is implemented so that it returns the
+	required configuration for using a backend, namely, the diagrameditor-backend.xml 
+	in the java and dotnet directories, respectively.
+ -->
+	<include name="config/backend.xml"/>
+	<include name="config/editor-commons.xml"/>
+	<add as="onInit"><![CDATA[
+		function ()
+		{
+			onInit(this);
+			this.showTasks();
+		}
+	]]></add>	
+	<Array as="templates">
+		<add as="linkStructure">
+			<LinkStructure label="new link structure" href="">
+				<mxCell vertex="1" style="swimlane;horizontal=1;fillColor=#ff9999" connectable="1">
+					<mxGeometry as="geometry" width="200" height="200"/>
+				</mxCell>
+			</LinkStructure>
+		</add>
+		<add as="layerStructure">
+			<LayerStructure label="new layer structure" href="">
+				<mxCell vertex="1" style="swimlane;horizontal=0;fillColor=#99ff99" connectable="1">
+					<mxGeometry as="geometry" width="200" height="200"/>
+				</mxCell>
+			</LayerStructure>
+		</add>
+		<add as="binStructure">
+			<BinStructure label="new selection bin" href="">
+				<mxCell vertex="1" style="swimlane;horizontal=1;fillColor=#9999ff" connectable="1">
+					<mxGeometry as="geometry" width="200" height="200"/>
+				</mxCell>
+				<SelectionRule>this is a selection rule</SelectionRule>
+			</BinStructure>
+		</add>	
+		<add as="atomicNarrativeObject">
+			<AtomicNarrativeObject label="atomic object" href="">
+				<mxCell vertex="1">	
+					<mxGeometry as="geometry" width="80" height="40"/>
+				</mxCell>
+			</AtomicNarrativeObject>
+		</add>
+		<add as="implicitObject">
+			<ImplicitObject label="implicit object" href="">
+				<mxCell vertex="1" style="fillColor=#9999ff">	
+					<mxGeometry as="geometry" width="80" height="40"/>
+				</mxCell>
+			</ImplicitObject>
+		</add>
+		<add as="jumpObject">
+			<JumpObject label="jump object" href="">
+				<mxCell vertex="1" style="fillColor=#999999">	
+					<mxGeometry as="geometry" width="80" height="40"/>
+				</mxCell>
+			</JumpObject>
+		</add>						
+		<add as="decisionPoint">
+			<DecisionPoint label="" href="">
+				<mxCell vertex="1" style="ellipse">	
+					<mxGeometry as="geometry" width="20" height="20"/>
+				</mxCell>
+			</DecisionPoint>
+		</add>			
+			
+		<add as="group">
+			<Group label="" href="">
+				<mxCell vertex="1" style="group" connectable="0"/>
+			</Group>
+		</add>
+		<add as="connector">
+			<Link label="" href="">
+				<mxCell edge="1">
+					<mxGeometry as="geometry" relative="1"/>
+				</mxCell>
+			</Link>
+		</add>
+		<add as="container">
+			<Container label="Container" href="">
+				<mxCell vertex="1" style="swimlane" connectable="0">
+					<mxGeometry as="geometry" width="200" height="200"/>
+				</mxCell>
+			</Container>
+		</add>
+		<add as="rectangle">
+			<Rect label="Rectangle" href="">
+				<mxCell vertex="1">	
+					<mxGeometry as="geometry" width="80" height="40"/>
+				</mxCell>
+			</Rect>
+		</add>
+		<add as="text">
+			<Text label="Text Here" href="">
+				<mxCell vertex="1" style="text">	
+					<mxGeometry as="geometry" width="80" height="20"/>
+				</mxCell>
+			</Text>
+		</add>
+		<add as="image">
+			<Image label="" href="">
+				<mxCell vertex="1" style="image">	
+					<mxGeometry as="geometry" width="80" height="50"/>
+				</mxCell>
+			</Image>
+		</add>
+		<add as="rounded">
+			<Roundrect label="Rounded" href="">
+				<mxCell vertex="1" style="rounded">		
+					<mxGeometry as="geometry" width="80" height="40"/>
+				</mxCell>
+			</Roundrect>
+		</add>
+		<add as="shape">
+			<Shape label="Shape" href="">
+				<mxCell vertex="1" style="ellipse">		
+					<mxGeometry as="geometry" width="60" height="60"/>
+				</mxCell>
+			</Shape>
+		</add>
+		<add as="actor">
+			<Shape label="Shape" href="">
+				<mxCell vertex="1" style="actor">		
+					<mxGeometry as="geometry" width="40" height="60"/>
+				</mxCell>
+			</Shape>
+		</add>
+		<add as="cloud">
+			<Shape label="Shape" href="">
+				<mxCell vertex="1" style="cloud">		
+					<mxGeometry as="geometry" width="80" height="60"/>
+				</mxCell>
+			</Shape>
+		</add>
+		<add as="hline">
+			<Shape label="" href="">
+				<mxCell vertex="1" style="ellipse">		
+					<mxGeometry as="geometry" width="60" height="10"/>
+				</mxCell>
+			</Shape>
+		</add>
+	</Array>	
+	<add as="createTasks"><![CDATA[
+		function (div)
+		{
+			var off = 30;
+			
+			if (this.graph != null)
+			{
+				var layer = this.graph.model.root.getChildAt(0);
+				mxUtils.para(div,  mxResources.get('examples'));
+				mxUtils.linkInvoke(div, mxResources.get('newDiagram'), this,
+					'open', 'narratives/empty.xml', off);
+				mxUtils.br(div);
+				mxUtils.linkInvoke(div, mxResources.get('swimlanes'), this,
+					'open', 'narratives/swimlanes.xml', off);
+				mxUtils.br(div);
+
+				
+				if (!this.graph.isSelectionEmpty())
+				{
+					var cell = this.graph.getSelectionCell();
+					if (this.graph.getSelectionCount() == 1 &&
+						(this.graph.model.isVertex(cell) &&
+						cell.getEdgeCount() > 0) || this.graph.isSwimlane(cell))
+					{
+						mxUtils.para(div, 'Layout');
+						mxUtils.linkAction(div, mxResources.get('verticalTree'),
+							this, 'verticalTree', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('horizontalTree'),
+							this, 'horizontalTree', off);
+						mxUtils.br(div);
+					}
+					
+					mxUtils.para(div, 'Format');
+					
+					if (mxUtils.isNode(cell.value, 'Symbol'))
+					{
+						mxUtils.linkAction(div, mxResources.get('image'),
+							this, 'image', off);
+						mxUtils.br(div);
+					}
+					else
+					{
+						mxUtils.linkAction(div, mxResources.get('opacity'),
+							this, 'opacity', off);
+						mxUtils.br(div);
+						if (this.graph.model.isVertex(cell) ||
+							(cell.style != null && 
+							cell.style.indexOf("arrowEdge") >= 0))
+						{
+							mxUtils.linkAction(div, mxResources.get('gradientColor'),
+								this, 'gradientColor', off);
+							mxUtils.br(div);
+						}
+						if (this.graph.model.isEdge(cell))
+						{
+							mxUtils.linkAction(div, 'Straight Connector', this, 'straightConnector', off);
+							mxUtils.br(div);
+							mxUtils.linkAction(div, 'Elbow Connector', this, 'elbowConnector', off);
+							mxUtils.br(div);
+							mxUtils.linkAction(div, 'Arrow Connector', this, 'arrowConnector', off);
+							mxUtils.br(div);
+						}
+					}
+					
+					mxUtils.linkAction(div, 'Rounded', this, 'toggleRounded', off);
+					mxUtils.br(div);
+					if (this.graph.isSwimlane(cell) || this.graph.model.isEdge(cell))
+					{
+						mxUtils.linkAction(div, 'Orientation', this, 'toggleOrientation', off);
+						mxUtils.br(div);
+					}
+					
+					if (this.graph.getSelectionCount() > 1)
+					{
+						mxUtils.para(div, mxResources.get('align'));
+						mxUtils.linkAction(div, mxResources.get('left'),
+							this, 'alignCellsLeft', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('center'),
+							this, 'alignCellsCenter', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('right'),
+							this, 'alignCellsRight', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('top'),
+							this, 'alignCellsTop', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('middle'),
+							this, 'alignCellsMiddle', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('bottom'),
+							this, 'alignCellsBottom', off);
+						mxUtils.br(div);
+					}
+					
+					mxUtils.para(div, mxResources.get('selection'));
+					mxUtils.linkAction(div, mxResources.get('clearSelection'),
+						this, 'selectNone', off);
+					mxUtils.br(div);
+										
+					//mxUtils.para(div, 'Format');
+					
+					// this is NSL specific
+										
+					if (this.graph.getSelectionCount() == 1 && this.graph.isNarrativeItem(cell))
+					{
+						//mxUtils.para(div, cell.value.nodeName);
+						mxUtils.para(div, 'Narrative');
+						
+						// Creates the form from the attributes of the user object
+						var form = new mxForm();
+						
+						/*
+						
+						if ( this.graph.isLinkStructure(cell.parent) ) {
+							console.log(this.graph.isStartItem(cell));
+							var startItemCheckbox = form.addCheckbox('Start item', this.graph.isStartItem(cell) );
+							
+							var applyHandler = function(graph) {
+								var newValue = startItemCheckbox.value;
+								var oldValue = graph.isStartItem(cell);
+				
+								if (newValue != oldValue) {
+									graph.getModel().beginUpdate();				                       
+				                    try {
+				                    	var edit = new mxCellAttributeChange(cell.parent, 'startItem', (newValue ? cell.getId() : ''));
+				                       	graph.getModel().execute(edit);
+				                    } finally {
+				                        graph.getModel().endUpdate();
+				                    }
+								}
+							}; 
+				
+							mxEvent.addListener(startItemCheckbox, 'change', applyHandler(this.graph));
+						}						
+						*/
+						
+						/*
+						mxUtils.linkAction(div, 'Set start item', this, 'verticalTree', off);
+						mxUtils.br(div);
+
+						// Writes the title					
+						var center = document.createElement('center');
+						mxUtils.writeln(center, cell.value.nodeName + ' (' + cell.id + ')');
+						div.appendChild(center);
+						mxUtils.br(div);
+						*/
+	
+
+		
+						var attrs = cell.value.attributes;
+						
+						for (var i = 0; i < attrs.length; i++)
+						{
+							this.createTextField(this.graph, form, cell, attrs[i]);
+						}
+						
+						var children = mxUtils.getChildNodes(cell.value);
+						
+						for (var i = 0; i < children.length; i++)
+						{
+							this.createTextArea(this.graph, form, cell, children[i], i);
+						}							
+		
+						div.appendChild(form.getTable());
+						mxUtils.br(div);														
+					}										
+				}
+				else if (layer.getChildCount() > 0)
+				{
+					mxUtils.para(div, mxResources.get('selection'));
+					mxUtils.linkAction(div, mxResources.get('selectAll'),
+						this, 'selectAll', off);
+					mxUtils.br(div);
+				}
+				
+				mxUtils.br(div);
+			}
+		}
+	]]></add>
+	<add as="createTextField"><![CDATA[
+		function(graph, form, cell, attribute)
+		{
+			var input = form.addText(attribute.nodeName + ':', attribute.nodeValue);
+
+			var applyHandler = function()
+			{
+				var newValue = input.value || '';
+				var oldValue = cell.getAttribute(attribute.nodeName, '');
+
+				if (newValue != oldValue)
+				{
+					graph.getModel().beginUpdate();
+                       
+                    try
+                    {
+                    	var edit = new mxCellAttributeChange(cell, attribute.nodeName, newValue);
+                       	graph.getModel().execute(edit);
+                       	graph.updateCellSize(cell);
+                    }
+                    finally
+                    {
+                        graph.getModel().endUpdate();
+                    }
+				}
+			}; 
+
+			mxEvent.addListener(input, 'keypress', function (evt)
+			{
+				// Needs to take shift into account for textareas
+				if (evt.keyCode == /*enter*/13 &&
+					!mxEvent.isShiftDown(evt))
+				{
+					input.blur();
+				}
+			});
+
+			if (mxClient.IS_IE)
+			{
+				mxEvent.addListener(input, 'focusout', applyHandler);
+			}
+			else
+			{
+				// Note: Known problem is the blurring of fields in
+				// Firefox by changing the selection, in which case
+				// no event is fired in FF and the change is lost.
+				// As a workaround you should use a local variable
+				// that stores the focused field and invoke blur
+				// explicitely where we do the graph.focus above.
+				mxEvent.addListener(input, 'blur', applyHandler);
+			}
+		}	
+	]]></add>
+	<add as="createTextArea"><![CDATA[
+		function(graph, form, cell, node, index) {
+			
+			console.log(node.nodeName + " : " + node.textContent);
+			
+			// node.nodeName + '<br/>'
+			
+			var input = form.addTextarea('', node.textContent);
+
+			var applyHandler = function() {
+				
+				var newValue = input.value || '';
+				var oldValue = node.textContent;
+				
+				if (newValue != oldValue) {
+					var elt = cell.value.cloneNode(true);	
+					elt.childNodes[index].textContent = newValue;
+					graph.getModel().beginUpdate();                       
+                    try {
+                    	var edit = new mxValueChange(graph.getModel(), cell, elt);
+                       	graph.getModel().execute(edit);
+                    } finally {
+                        graph.getModel().endUpdate();
+                    }
+				}
+			};
+
+			mxEvent.addListener(input, 'keypress', function (evt) {
+				// Needs to take shift into account for textareas
+				if (evt.keyCode == /* return */ 13 && !mxEvent.isShiftDown(evt)) {
+					input.blur();
+				}
+			});
+
+			if (mxClient.IS_IE) {
+				mxEvent.addListener(input, 'focusout', applyHandler);
+			} else {
+				// Note: Known problem is the blurring of fields in
+				// Firefox by changing the selection, in which case
+				// no event is fired in FF and the change is lost.
+				// As a workaround you should use a local variable
+				// that stores the focused field and invoke blur
+				// explicitely where we do the graph.focus above.
+				mxEvent.addListener(input, 'blur', applyHandler);
+			}		
+
+		}	
+	]]></add>	
+</mxEditor>

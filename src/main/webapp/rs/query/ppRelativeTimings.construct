@@ -1,0 +1,21 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+CONSTRUCT { 
+	?mo	core:hasRelativeIn ?nRin ; 
+		core:hasRelativeOut ?nRout 
+} WHERE {
+	?mo		rdf:type 		core:MediaItem ;
+			core:contains	[ 
+			 	rdfs:label	?rin ;
+			 	rdf:type	[ rdfs:label "RIN" ] ] ;
+			core:contains	[ 
+			 	rdfs:label	?rout ;
+			 	rdf:type	[ rdfs:label "ROUT" ] ] .
+	BIND ( xsd:long(?rin) AS ?nRin ) .
+	BIND ( xsd:long(?rout) AS ?nRout ) .
+}
+

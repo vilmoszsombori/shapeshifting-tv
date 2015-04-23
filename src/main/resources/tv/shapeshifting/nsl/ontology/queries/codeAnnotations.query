@@ -1,0 +1,13 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+ 
+SELECT ?no ?code ?in ?out
+WHERE 
+{
+	?no nsl:hasTemporalAnnotation ?ta .
+	?ta nsl:type "code"^^xsd:string ;
+		nsl:name ?code ; 
+		nsl:beginTime ?in ;
+		nsl:endTime ?out .
+	FILTER regex(?code, "^[\\s]*set\\(([^\\(\\)\\,]+),([^\\(\\)\\,]+)\\)[\\s\\,]*")
+}

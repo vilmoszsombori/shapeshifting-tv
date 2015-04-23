@@ -1,0 +1,15 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT ?in ( MIN(?temp) AS ?out )
+WHERE { 
+	?marker1 rdf:type production:Marker ;
+		nsl:hasRelativeIn ?in .
+			
+	?marker2 rdf:type production:Marker ;
+		nsl:hasRelativeIn ?temp .
+	FILTER( ?in < ?temp ) .				
+}
+GROUP BY ?in
+ORDER BY ?in ?out

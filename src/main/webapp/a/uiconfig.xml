@@ -1,0 +1,79 @@
+<mxEditor>
+	<ui>
+		<add as="graph" element="graph" />
+		<add as="toolbar" element="toolbox" />
+	</ui>
+	<Array as="templates">
+		<add as="myFirstTemplate">
+			<Rect label="Rectangle" href="">
+				<mxCell vertex="1">
+					<mxGeometry as="geometry" width="80" height="40" />
+				</mxCell>
+			</Rect>
+		</add>
+	</Array>
+	<Array as="actions">
+		<add as="myFirstAction"><![CDATA[
+			function (editor, cell)
+			{
+				var encoder = new mxCodec();
+				var node = encoder.encode(editor.graph.getModel());
+				mxUtils.popup(mxUtils.getPrettyXml(node), true);
+			}
+		]]></add>
+	</Array>
+	<mxGraphModel as="model">
+		<add as="bla"><![CDATA[
+			function(cell)
+			{
+				alert('bla');
+				return this.isSwimlane(cell);
+			}
+		]]></add>
+		<root>
+			<Workflow label="MyWorkflow" description="" href="" id="0"/>
+			<Layer label="Default Layer">
+				<mxCell parent="0"/>
+			</Layer>
+		</root>
+	</mxGraphModel>	
+	<!-- 
+	<mxGraph>
+		<add as="isAutoSizeCell"><![CDATA[
+			function(cell)
+			{
+				return this.isSwimlane(cell);
+			}
+		]]></add>
+		<add as="isSwimlane"><![CDATA[
+			function (cell)
+			{
+				return mxUtils.isNode(this.model.getValue(cell), 'swimlane');
+			}
+		]]></add>
+		<add as="isLinkStructure"><![CDATA[
+			function(cell)
+			{
+				alert('bla');
+				return mxUtils.isNode(this.model.getValue(cell), 'linkStructure');
+			}
+		]]></add>
+	</mxGraph>
+	-->
+	<mxDefaultToolbar as="toolbar">
+		<add as="MyFirstAction" action="myFirstAction" icon="images/icons48/gear.png" />
+		<hr />
+		<br />
+		<add as="Gear" template="myFirstTemplate" style="rounded=1"
+			icon="images/icons48/server.png" />
+		<add as="Earth" template="myFirstTemplate" style="shape=ellipse"
+			icon="images/icons48/earth.png" />
+	</mxDefaultToolbar>
+	<mxDefaultPopupMenu as="popupHandler">
+		<add as="Bla" action="blaBla" icon="images/icons48/gear.png"/>
+		<add as="Show XML (Custom)" action="myFirstAction" icon="images/icons48/gear.png" />
+		<separator />
+		<add as="Delete (Built-in)" action="delete" icon="images/icons48/keys.png"
+			if="cell" />
+	</mxDefaultPopupMenu>
+</mxEditor>

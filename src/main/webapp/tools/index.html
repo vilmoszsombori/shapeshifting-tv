@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>ShapeShifting TV Authoring Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="shortcut icon" type="image/x-icon"
+	href="../rs/img/favicon.ico" />
+<link href="tools.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	mxBasePath = '../src';
+</script>
+
+<script type="text/javascript" src="../src/js/mxClient.js"></script>
+<script type="text/javascript" src="js/mxApplication.js"></script>
+<script type="text/javascript" src="js/mxInit.js"></script>
+</head>
+<body onload="new mxApplication('config/tools.xml');">
+	<table id="splash" style="background: white; position: absolute; top: 0px; left: 0px; z-index: 4;">
+		<tr>
+			<td align="center" valign="middle"><img src="images/loading.gif">
+			</td>
+		</tr>
+	</table>
+	<div id="graph" class="base">
+		<!-- Graph Here -->
+	</div>
+	<div id="status" class="base" align="right">
+		<!-- Status Here -->
+	</div>
+	<textarea id="xml"></textarea>
+	<span style="float:right;padding-right:36px;display:none;">
+		<input id="source" type="checkbox"/>Source
+	</span>
+</body>
+</html>

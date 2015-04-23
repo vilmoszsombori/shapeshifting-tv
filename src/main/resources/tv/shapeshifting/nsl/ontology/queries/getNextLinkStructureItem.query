@@ -1,0 +1,14 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+
+SELECT ?no ?condition ?value
+WHERE 
+{
+	?link nsl:hasSource <%s> ;
+		  nsl:hasDestination ?no .
+
+	OPTIONAL { 
+		?link nsl:hasLinkCondition ?condition ; nsl:isEnabled ?value .
+	} .
+
+	FILTER( ?value > 0 || !bound(?condition) )
+}

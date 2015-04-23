@@ -1,0 +1,48 @@
+@prefix nsl: <http://shapeshifting.tv/ontology/nsl#>
+@prefix production: <http://shapeshifting.tv/ontology/production#>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+[objectValue1:
+	(?no nsl:hasEditingRule ?val)
+	(?no rdfs:label ?label)
+	regex(?val, '[\s]*objectvalue\\([\s]*(.*)\\)', ?objectvalue)
+	(?no nsl:hasObjectValue ?y)
+	//objectValue(?objectvalue, ?x)
+	evaluateArithmeticExpression(?objectvalue, ?x)	
+	notEqual(?x, ?y)	
+	->
+	drop(3)
+	//print("Remove", ?label, ?y)
+]
+
+
+[objectValue2:
+	(?no nsl:hasEditingRule ?val)
+	(?no rdfs:label ?label)
+	regex(?val, '[\s]*objectvalue\\([\s]*(.*)\\)', ?objectvalue)
+	//objectValue(?objectvalue, ?x)
+	evaluateArithmeticExpression(?objectvalue, ?x)
+	->
+	(?no nsl:hasObjectValue ?x)
+	//print("Added", ?label, ?x)
+]
+
+[linkConditionEval1:
+	(?link nsl:hasLinkCondition ?condition)
+	(?link nsl:isEnabled ?x)
+	evaluateArithmeticExpression(?condition, ?y)
+	notEqual(?x, ?y)
+	->
+	drop(1)
+]
+
+[linkConditionEval2:
+	(?link nsl:hasLinkCondition ?condition)
+	noValue(?link nsl:isEnabled ?x)
+	evaluateArithmeticExpression(?condition, ?y)
+	->
+	(?link nsl:isEnabled ?y)
+]
+

@@ -1,0 +1,66 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX afn: <http://jena.hpl.hp.com/ARQ/function#>
+
+SELECT ?uri ?id ( IF(BOUND(?name), ?name, ?_label) AS ?label ) ?parent ?x ?y ?source ?destination ?linkCondition ?startItem ?leadingLayer ?selectType ?selectionRule ?editingRule ?terminationCondition ?expression
+WHERE { 
+	?uri a nsl:NarrativeItem ; rdfs:label ?_label
+	BIND( afn:localname(?uri) AS ?id ) .
+	
+	OPTIONAL { 
+		?uri nsl:isNarrativeItemOf ?a .
+		BIND( afn:localname(?a) AS ?parent )
+	} .
+
+	OPTIONAL { 
+		?uri nsl:hasTextualAnnotation [ nsl:key "name" ; nsl:value ?name ] ; 
+	} .
+
+	OPTIONAL { 
+		?uri nsl:hasTextualAnnotation [ nsl:key "x" ; nsl:value ?x ] , [ nsl:key "y" ; nsl:value ?y ] ;  
+	} .
+	
+	OPTIONAL {
+		?uri nsl:hasSource ?_source ; nsl:hasDestination ?_destination
+		BIND( afn:localname(?_source) AS ?source )
+		BIND( afn:localname(?_destination) AS ?destination ) .
+		OPTIONAL {
+			?uri nsl:hasTextualAnnotation [ nsl:key "condition" ; nsl:value ?linkCondition ]
+		}                                              	
+	} .
+
+	OPTIONAL {
+		?uri nsl:hasSelectType ?_selectType
+		BIND( afn:localname(?_selectType) AS ?selectType ) .
+	} .
+	
+	OPTIONAL {
+		?uri nsl:hasStartItem ?_startItem
+		BIND( afn:localname(?_startItem) AS ?startItem ) .
+	} .
+	
+	OPTIONAL {
+		?uri nsl:hasLeadingLayer ?_leadingLayer
+		BIND( afn:localname(?_leadingLayer) AS ?leadingLayer ) .
+	} .
+	
+	OPTIONAL {
+		?uri nsl:hasSelectionRule ?selectionRule
+	} .
+
+	OPTIONAL {
+		?uri nsl:hasEditingRule ?editingRule
+	} .		
+
+	OPTIONAL {
+		?uri nsl:hasTerminationCondition ?terminationCondition
+	} .		
+
+	OPTIONAL {
+		?uri nsl:hasExpression ?expression
+	} .		
+					
+}

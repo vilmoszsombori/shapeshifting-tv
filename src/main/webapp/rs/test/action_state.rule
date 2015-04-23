@@ -1,0 +1,296 @@
+@prefix ta2: <http://www.example.org/TA2.owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+[r1_start_talking_state_transition: 		
+#get current state
+		(?current_talking_state rdf:type ta2:VoiceInactivePersonState),
+		(?current_talking_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_talking_state),  
+#get next action
+		(?action rdf:type ta2:PersonStartTalkingAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?voice_active_person_state)
+
+    
+		->
+		print(?action ?person ?current_talking_state ?action_execution_time ?voice_active_person_state, ' start_talking_state_transition'),
+	  remove(1),
+		(?current_talking_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_talking_state ta2:hasEndTime ?action_execution_time), 
+		(?voice_active_person_state rdf:type ta2:VoiceActivePersonState),
+		(?person ta2:hasState ?voice_active_person_state),
+    (?voice_active_person_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?voice_active_person_state ta2:hasStartTime ?action_execution_time),
+    (?action ta2:isProcessed "true"^^xsd:boolean)	
+		
+]
+		
+		
+
+[r2_stop_talking_state_transition: 
+#get current state
+		(?current_talking_state rdf:type ta2:VoiceActivePersonState),
+		(?current_talking_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_talking_state),  
+#get next action		
+		(?action rdf:type ta2:PersonStopTalkingAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?voice_inactive_person_state)
+
+    
+		    		
+		->
+		print(?action ?person ?current_talking_state, ' stop_talking_state_transition'),
+	  remove(1),
+		(?current_talking_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_talking_state ta2:hasEndTime ?action_execution_time), 
+		(?voice_inactive_person_state rdf:type ta2:VoiceInactivePersonState),
+		(?person ta2:hasState ?voice_inactive_person_state),
+    (?voice_inactive_person_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?voice_inactive_person_state ta2:hasStartTime ?action_execution_time),
+    (?action ta2:isProcessed "true"^^xsd:boolean)	
+
+]		
+		
+		
+
+[r3_stop_talking_no_state_change:
+#get current state
+		(?current_talking_state rdf:type ta2:VoiceInactivePersonState),
+		(?current_talking_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_talking_state),  
+#get next action 
+		(?action rdf:type ta2:PersonStopTalkingAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		    				
+		    				 
+		->
+		print(?action ?person ?current_talking_state, ' stop_talking_no_state_change'),
+	  (?action ta2:isProcessed "true"^^xsd:boolean)	
+]
+
+
+
+[r4_start_talking_no_change:
+#get current state
+		(?current_talking_state rdf:type ta2:VoiceActivePersonState),
+		(?current_talking_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_talking_state),  
+#get next action 
+		(?action rdf:type ta2:PersonStartTalkingAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		    				
+		->
+		print(?action ?person ?current_talking_state, ' start_talking_no_change'),
+	  (?action ta2:isProcessed "true"^^xsd:boolean)	
+]
+		
+		
+		
+[r5_person_join_state_transition:
+#get current
+		(?current_location_state rdf:type ta2:NotInPlacePersonState),
+		(?current_location_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_location_state),  
+#get next action 
+		(?action rdf:type ta2:PersonJoinAVCommunicationAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		(?action ta2:hasExecutionTime ?action_execution_time),
+
+#create new state
+    makeTemp(?inplace_person_state)
+		    		
+		->
+		print(?action ?person ?current_location_state, ' person_join_state_transition'),
+	  remove(1),
+		(?current_location_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_location_state ta2:hasEndTime ?action_execution_time), 
+		(?inplace_person_state rdf:type ta2:InPlacePersonState),
+		(?person ta2:hasState ?inplace_person_state),
+    (?inplace_person_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?inplace_person_state ta2:hasStartTime ?action_execution_time),
+    (?action ta2:isProcessed "true"^^xsd:boolean)	
+]				
+
+
+
+[r6_person_leave_state_transition: 
+#get current
+		(?current_location_state rdf:type ta2:InPlacePersonState),
+		(?current_location_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_location_state),  
+#get next action
+		(?action rdf:type ta2:PersonLeaveAVCommunicationAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?not_inplace_person_state)
+		
+		->
+		print(?action ?person ?current_location_state, ' person_leavestate__transition'),
+	  remove(1),
+		(?current_location_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_location_state ta2:hasEndTime ?action_execution_time), 
+		(?not_inplace_person_state rdf:type ta2:NotInPlacePersonState),
+		(?person ta2:hasState ?not_inplace_person_state),
+    (?not_inplace_person_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?not_inplace_person_state ta2:hasStartTime ?action_execution_time),
+    (?action ta2:isProcessed "true"^^xsd:boolean)	
+]				
+
+
+
+[r7_person_leave_no_state_change:
+#get current state
+		(?current_location_state rdf:type ta2:NotInPlacePersonState),
+		(?current_loaction_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_location_state),  
+#get next action 
+		(?action rdf:type ta2:PersonLeaveAVCommunicationAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		    				
+		    				 
+		->
+		print(?action ?person ?current_location_state, ' person_leave_no_state_change'),
+	  (?action ta2:isProcessed "true"^^xsd:boolean)		
+]
+
+
+
+[r8_person_join_no_state_change:
+#get current state
+		(?current_location_state rdf:type ta2:InPlacePersonState),
+		(?current_loaction_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?person ta2:hasState ?current_location_state),  
+#get next action 
+		(?action rdf:type ta2:PersonJoinAVCommunicationAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecuter ?person), 
+		  
+		   
+		->
+		print(?action ?person ?current_location_state, ' person_join_no_state_change'),
+	  (?action ta2:isProcessed "true"^^xsd:boolean)	
+]
+
+
+
+
+[r9_start_2_party_dialog_state_transition: 		
+#get current state
+		(?current_av_communication_state rdf:type ta2:SilentAVCommunicationState),
+		(?current_av_communication_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?situation ta2:hasState ?current_av_communication_state),  
+#get next action
+		(?action rdf:type ta2:Start2PartyDialogAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasParticipant ?person1), 
+		(?action ta2:hasParticipant ?person2), 
+		notEqual(?person1, ?person2),
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?dialog_state),
+    
+		->
+		print(?action ?current_av_communication_state ?person1 ?person2, ' start_2_party_dialog_state_transition'),
+	  remove(1),
+		(?current_av_communication_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_av_communication_state ta2:hasEndTime ?action_execution_time), 
+		(?dialog_state rdf:type ta2:DialogAVCommunicationState),
+		(?situation ta2:hasState ?dialog_state),
+    (?dialog_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?dialog_state ta2:hasStartTime ?action_execution_time),
+		(?dialog_state ta2:hasParticipant ?person1), 
+		(?dialog_state ta2:hasParticipant ?person2), 
+    (?action ta2:isProcessed "true"^^xsd:boolean),	
+		
+]
+
+
+
+[r10_start_2_party_dialog_no_change: 		
+#get current state
+		(?current_av_communication_state rdf:type ta2:DialogAVCommunicationState),
+		(?current_av_communication_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?situation ta2:hasState ?current_av_communication_state),  
+#get next action
+		(?action rdf:type ta2:Start2PartyDialogAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+    
+		->
+		print(?action ?current_av_communication_state, ' start_2_party_dialog_no_change'),
+		(?action ta2:isProcessed "true"^^xsd:boolean),	
+		
+]
+
+
+[r11_interrupt_2_party_dialog_transition:	
+#get current state
+		(?current_av_communication_state rdf:type ta2:DialogAVCommunicationState),
+		(?current_av_communication_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?situation ta2:hasState ?current_av_communication_state),  
+#get next action
+		(?action rdf:type ta2:Interrupt2PartyDialogAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?unknown_dialog_state),
+#guard
+		->
+		print(?action ?current_av_communication_state ?unknown_dialog_state ' interrupt_2_party_dialog_transition'),
+	  remove(1),
+		(?current_av_communication_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_av_communication_state ta2:hasEndTime ?action_execution_time), 
+		(?unknown_dialog_state rdf:type ta2:UnknownAVCommunicationState),
+		(?situation ta2:hasState ?unknown_dialog_state),
+    (?unknown_dialog_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?unknown_dialog_state ta2:hasStartTime ?action_execution_time), 
+    (?action ta2:isProcessed "true"^^xsd:boolean),	
+		
+]
+
+
+
+[r12_start_2_party_dialog_state_transition: 		
+#get current state
+		(?current_av_communication_state rdf:type ta2:UnknownAVCommunicationState),
+		(?current_av_communication_state ta2:isCurrentState "true"^^xsd:boolean),
+		(?situation ta2:hasState ?current_av_communication_state),  
+#get next action
+		(?action rdf:type ta2:Start2PartyDialogAction), 
+		noValue(?action ta2:isProcessed "true"^^xsd:boolean),
+		(?action ta2:hasParticipant ?person1), 
+		(?action ta2:hasParticipant ?person2), 
+		notEqual(?person1, ?person2),
+		(?action ta2:hasExecutionTime ?action_execution_time),
+#create new state
+    makeTemp(?dialog_state),
+    
+		->
+		print(?action ?current_av_communication_state ?person1 ?person2, ' start_2_party_dialog_state_transition'),
+	  remove(1),
+		(?current_av_communication_state ta2:isCurrentState "false"^^xsd:boolean),
+    (?current_av_communication_state ta2:hasEndTime ?action_execution_time), 
+		(?dialog_state rdf:type ta2:DialogAVCommunicationState),
+		(?situation ta2:hasState ?dialog_state),
+    (?dialog_state ta2:isCurrentState "true"^^xsd:boolean),
+    (?dialog_state ta2:hasStartTime ?action_execution_time),
+		(?dialog_state ta2:hasParticipant ?person1), 
+		(?dialog_state ta2:hasParticipant ?person2), 
+    (?action ta2:isProcessed "true"^^xsd:boolean),	
+		
+]

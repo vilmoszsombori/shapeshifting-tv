@@ -1,0 +1,28 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX context: <java:tv.ShapeShift.nsl.functions.> 
+
+SELECT ?mo2 ?l1 ?l2 
+WHERE 
+{
+	?rout rdfs:label "ROUT" .
+	?a1 rdf:type ?rout ; rdfs:label ?l1 .
+
+	?rin rdfs:label "RIN" .
+	?a2 rdf:type ?rin ; rdfs:label ?l2 .
+	
+	FILTER (?l1 = ?l2) .
+	
+	<http://www.ist-nm2.org/ontology/production#ID0618dab8f7754c96aa91563f85ab4ec4> core:contains ?a1 .
+
+	?mo2 rdf:type core:MediaItem ;
+		 core:contains ?a2 .
+		 #rdfs:label ?label1 .	
+	
+	#FILTER (?mo1 != ?mo2)
+	#FILTER (?a1 != ?a2 && context:stringEqual(?l1, ?l2))
+}
+

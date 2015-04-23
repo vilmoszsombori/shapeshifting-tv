@@ -1,0 +1,12 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+
+SELECT ?binItem
+WHERE 
+{
+	<%1$s> nsl:hasBinItem|nsl:hasImplicitContent ?binItem .
+	%2$s
+	
+	#OPTIONAL { ?no nsl:alignsWith|^nsl:alignsWith ?align  }.
+		#nsl:hasSelectionRule ?sr .
+}
+#LIMIT 1

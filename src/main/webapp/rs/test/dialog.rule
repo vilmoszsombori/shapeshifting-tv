@@ -1,0 +1,72 @@
+@prefix ta2: <http://www.example.org/TA2.owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+[start_2_party_dialog_action:
+
+  
+  (?voice_active_person_state rdf:type ta2:VoiceActivePersonState),
+  (?voice_active_person_state ta2:isCurrentState "true"^^xsd:boolean),
+  (?voice_active_person_state ta2:hasStartTime ?start_time),
+  (?person ta2:hasState ?voice_active_person_state), 
+  
+	GetLatest4VoiceActivePersons(?p1, ?p2, ?p3, ?p4)
+	equal(?person, ?p1),
+	equal(?p1, ?p3),
+	equal(?p2, ?p4),
+	notEqual(?p1, ?p2)
+#create new dialog action
+    makeTemp(?start_dialog_action),
+
+  ->
+
+	print(?person ?p1 ?p2 ?p3 ?p4, ' start 2 party dialog action detected')  
+	(?start_dialog_action rdf:type ta2:Start2PartyDialogAction),
+	(?start_dialog_action ta2:hasExecutionTime ?start_time),
+	(?start_dialog_action ta2:hasParticipant ?p1),
+	(?start_dialog_action ta2:hasParticipant ?p2),
+	
+
+]
+
+
+
+
+
+[interrupt_2_party_dialog_action:
+  
+  (?voice_active_person_state rdf:type ta2:VoiceActivePersonState),
+  (?voice_active_person_state ta2:isCurrentState "true"^^xsd:boolean),
+  (?voice_active_person_state ta2:hasStartTime ?start_time),
+  (?person ta2:hasState ?voice_active_person_state), 
+  
+	GetLatest5VoiceActivePersons(?p1, ?p2, ?p3, ?p4, ?p5)
+	equal(?person, ?p1),
+	equal(?p2, ?p4),
+	equal(?p3, ?p5),
+	notEqual(?p1, ?p2),
+	notEqual(?p1, ?p3),
+	notEqual(?p2, ?p3),
+#create new dialog action
+    makeTemp(?interrupt_dialog_action),
+
+  ->
+
+	print(?person ?p1 ?p2 ?p3 ?p4 ?p5, ' interrupt 2 party dialog action detected')  
+	(?interrupt_dialog_action rdf:type ta2:Interrupt2PartyDialogAction),
+	(?interrupt_dialog_action ta2:hasExecutionTime ?start_time),
+	(?interrupt_dialog_action ta2:hasParticipant ?p2),
+	(?interrupt_dialog_action ta2:hasParticipant ?p3),
+	
+
+]
+
+
+
+
+
+

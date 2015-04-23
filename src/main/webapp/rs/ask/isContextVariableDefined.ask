@@ -1,0 +1,12 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+ASK { 
+    ?contextVariable a core:ContextVariable ;
+    	rdfs:label "%1$s"^^xsd:string ;
+        # rdfs:label ?label ;
+        core:hasValue ?value 
+} 

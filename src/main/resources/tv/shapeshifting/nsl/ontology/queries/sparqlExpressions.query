@@ -1,0 +1,10 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+SELECT ?sparql 
+WHERE 
+{
+	?no		rdf:type nsl:ImplicitObject .		
+	?no 	nsl:hasSPARQLExpression ?sparql .
+}
+

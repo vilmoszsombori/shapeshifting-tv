@@ -1,0 +1,66 @@
+@prefix nsl: <http://shapeshifting.tv/ontology/nsl#>
+@prefix production: <http://shapeshifting.tv/ontology/production#>
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+@prefix owl: <http://www.w3.org/2002/07/owl#> 
+@prefix protege: <http://protege.stanford.edu/plugins/owl/protege#>
+@prefix xsp: <http://www.owl-ontologies.com/2005/08/07/xsp.owl#>
+@prefix swrl: <http://www.w3.org/2003/11/swrl#>
+@prefix swrlb: <http://www.w3.org/2003/11/swrlb#>
+
+//[annotations:
+
+//	(?no	rdf:type nsl:ImplicitObject),
+//	(?no	nsl:hasExpression ?val),
+	
+//	regex(?val, '[\s]*select\\([\s]*[\']?([^\']*)[\']? = [\']?([^\']*)[\']?\\)', ?class, ?instance),
+
+//	strConcat('
+//		PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+//		PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+//		PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+//		CONSTRUCT { <', ?no ,'> nsl:hasImplicitContent ?mo } 
+//		WHERE 
+//		{	
+//			?mo			rdf:type 		nsl:MediaItem ;
+//						nsl:contains	?annotation .
+//			?annotation rdfs:label		"', ?instance,'" ;
+//						rdf:type		?annotationClass .
+//			?annotationClass rdfs:label "', ?class ,'" .
+//		}', ?res),
+		
+//  ->
+//	(?no	nsl:hasSPARQLExpression ?res),
+//	//print(?val ?class ?instance, ?res),
+//]
+
+[songInteractions:
+	(?song rdf:type production:Song)
+	(?song rdfs:label ?label)	
+	(?song nsl:imgUrl ?imgUrl)
+	regex(?label, '[\s]*([^\\(\\)]*)\\([^\\(\\)]*\\)[\s]*', ?cLabel)
+	strConcat('interaction?Song=', ?cLabel, ?action)
+	//print(?label ?action)			
+	makeTemp(?interaction)	
+	->
+	(?interaction rdf:type nsl:Interaction)
+	(?interaction rdf:type owl:NamedIndividual)
+	(?interaction rdfs:label ?label)
+	(?interaction nsl:startOffset "2500"^^xsd:long)
+	(?interaction nsl:endOffset "2500"^^xsd:long)
+	(?interaction nsl:actionUrl ?action)
+	(?interaction nsl:imgUrl ?imgUrl)
+	//print(?interaction)
+]
+
+[interactionExpressions:
+	(?no nsl:hasInteraction ?expression)
+	isLiteral(?expression)
+	//regex(?expression, '[\s]*sparql\\((.*)\\)[\s]*', ?sparql)
+	->
+	sparql(?expression, ?no)
+	drop(0)
+]

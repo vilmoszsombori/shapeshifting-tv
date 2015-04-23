@@ -1,0 +1,11 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+DELETE {  ?var nsl:hasValue ?val }
+INSERT {  ?var nsl:hasValue %2$s }
+WHERE  {
+    ?var a nsl:ContextVariable ;
+    rdfs:label "%1$s"^^xsd:string ;
+    nsl:hasValue ?val
+}

@@ -1,0 +1,10 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+
+SELECT ?key ?value
+WHERE 
+{
+	<%s> core:hasTextualAnnotation ?ta .
+	?ta core:key ?key .
+	?ta core:value ?value .		  
+}

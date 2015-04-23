@@ -1,0 +1,21 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX context: <java:tv.ShapeShift.nsl.functions.> 
+
+DELETE { ?no core:hasTextualAnnotation ?ta }
+WHERE 
+{
+	?no core:hasTextualAnnotation ?ta .
+	?ta core:key "x"^^xsd:string .
+
+	#?ta core:key ?key .
+	#FILTER(?key = "x"^^xsd:string || ?key = "y"^^xsd:string)
+	
+	#?ta core:value ?value .		  
+	#?ta core:key "x"^^xsd:string .
+	#?no core:hasTextualAnnotation ?ta .
+}
+

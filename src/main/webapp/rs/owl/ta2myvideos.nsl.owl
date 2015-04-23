@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY core "http://www.ist-nm2.org/ontology/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY production "http://www.ist-nm2.org/ontology/production#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ist-nm2.org/ontology/core#"
+     xml:base="http://www.ist-nm2.org/ontology/production"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:core="http://www.ist-nm2.org/ontology/core#"
+     xmlns:production="http://www.ist-nm2.org/ontology/production#">
+    <owl:Ontology rdf:about="http://www.ist-nm2.org/ontology/production"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#theProject -->
+
+    <owl:NamedIndividual rdf:about="&core;theProject">
+        <rdf:type rdf:resource="&core;Project"/>
+        <hasNarrativeRoot rdf:resource="&production;ID4cf0287e1019448eac590a489a5eba5d"/>
+        <hasRootGroup rdf:resource="&production;IDec55a58fb6a1465982f9cca898bfc5b9"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID0a8195b5a1e54d93a65bbdf0a7987a3e -->
+
+    <owl:NamedIndividual rdf:about="&production;ID0a8195b5a1e54d93a65bbdf0a7987a3e">
+        <rdf:type rdf:resource="&core;ImplicitObject"/>
+        <rdfs:label>composer</rdfs:label>
+        <isLinkStructureItemOf rdf:resource="&production;ID4cf0287e1019448eac590a489a5eba5d"/>
+        <isStartItemOf rdf:resource="&production;ID4cf0287e1019448eac590a489a5eba5d"/>
+        <isSourceOf rdf:resource="&production;ID50b3166ca9e34a6fae165570c978b7a6"/>
+        <hasTextualAnnotation rdf:resource="&production;ID5db586075c734429b6de736f7b4210e3"/>
+        <hasTextualAnnotation rdf:resource="&production;IDeb3087944886499ba6b97fdd5cc742bb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID0aaff65afa0742f58563487d16454c3e -->
+
+    <owl:NamedIndividual rdf:about="&production;ID0aaff65afa0742f58563487d16454c3e">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>comment</key>
+        <value>condition( play_count &gt; ComposerDuration )</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID0d18b609db2049da9e0f01302340f539 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID0d18b609db2049da9e0f01302340f539">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>name</key>
+        <value>clips</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID11f654e5e7124923ad6b78be1ac4d8b1 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID11f654e5e7124923ad6b78be1ac4d8b1">
+        <rdf:type rdf:resource="&core;LayerStructure"/>
+        <rdfs:label>story</rdfs:label>
+        <hasTextualAnnotation rdf:resource="&production;ID163783d81990424096eb19bd4977edf9"/>
+        <isBinItemOf rdf:resource="&production;ID5cd8d3f641204bdeac982fe2f2afd65a"/>
+        <hasLeadingLayer rdf:resource="&production;ID681ae54a42e54b869e5eda74c2797b1b"/>
+        <hasLayer rdf:resource="&production;ID681ae54a42e54b869e5eda74c2797b1b"/>
+        <hasLayer rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+        <!-- Updated for NSL1.1 -->
+        <hasPlaylistBarrier rdf:datatype="&xsd;boolean">true</hasPlaylistBarrier>        
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID12bbc39fb3854f2eb221b15af6034063 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID12bbc39fb3854f2eb221b15af6034063">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>name</key>
+        <value>soundtrack</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID163783d81990424096eb19bd4977edf9 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID163783d81990424096eb19bd4977edf9">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>name</key>
+        <value>story</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID16fef8e0ad594148920bf83970021f24 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID16fef8e0ad594148920bf83970021f24">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>condition( play_count &gt; ComposerDuration )
+and Event in ComposerEvent</value>
+        <key>comment</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID1837a0eef3514ddf9172a523cec35884 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID1837a0eef3514ddf9172a523cec35884">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>story</value>
+        <key>name</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID1cfe0390a4654337ab702e0f77bd6485 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID1cfe0390a4654337ab702e0f77bd6485">
+        <rdf:type rdf:resource="&core;MediaItem"/>
+        <rdfs:label>delayph</rdfs:label>
+        <hasTemporalAnnotation rdf:resource="&production;ID30d57878935b4d8b862fdf85a08a111f"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID2a7148d07c7341698cea58a1877f9bec -->
+
+    <owl:NamedIndividual rdf:about="&production;ID2a7148d07c7341698cea58a1877f9bec">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>select(&#39;MediaType&#39; = &#39;Video&#39;)</value>
+        <key>expression</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID3047ae93864f4f00b5012ef92dcb6cb3 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID3047ae93864f4f00b5012ef92dcb6cb3">
+        <rdf:type rdf:resource="&core;Link"/>
+        <rdfs:label></rdfs:label>
+        <hasDestination rdf:resource="&production;ID7cc2031435134c4a98c7a09c68085422"/>
+        <hasSource rdf:resource="&production;IDd43fe5db5a9a41e18dd11b3db55cb7df"/>
+        <isLinkStructureItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID30d57878935b4d8b862fdf85a08a111f -->
+
+    <owl:NamedIndividual rdf:about="&production;ID30d57878935b4d8b862fdf85a08a111f">
+        <rdf:type rdf:resource="&core;TemporalAnnotation"/>
+        <name></name>
+        <endTime>00:00:00:01</endTime>
+        <beginTime>00:00:00:00</beginTime>
+        <type>core.inOutTime</type>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID37de6f86e1c542f1ace8846d015b0200 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID37de6f86e1c542f1ace8846d015b0200">
+        <rdf:type rdf:resource="&core;ImplicitObject"/>
+        <rdfs:label>sound</rdfs:label>
+        <hasTextualAnnotation rdf:resource="&production;ID16fef8e0ad594148920bf83970021f24"/>
+        <hasTextualAnnotation rdf:resource="&production;ID45487d4841744600aed236c1543a5428"/>
+        <hasTextualAnnotation rdf:resource="&production;ID5e0465f32da342ecb6a4625095ee6eb5"/>
+        <isLinkStructureItemOf rdf:resource="&production;ID681ae54a42e54b869e5eda74c2797b1b"/>
+        <isStartItemOf rdf:resource="&production;ID681ae54a42e54b869e5eda74c2797b1b"/>
+        <hasTextualAnnotation rdf:resource="&production;IDae74573240024be7a78540fbc48dcaad"/>
+        <hasTextualAnnotation rdf:resource="&production;IDe3b98b42717f4b13b74a0be0852c954f"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID45487d4841744600aed236c1543a5428 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID45487d4841744600aed236c1543a5428">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>selectionrule</key>        
+        <!-- modified for NSL1.1 -->
+        <!-- <value>select(not media_played and Event in ComposerEvent )</value> -->
+        <!-- TODO: finish -->
+        <value>sparql(
+			PREFIX core: &lt;http://www.ist-nm2.org/ontology/core#&gt;
+			PREFIX production: &lt;http://www.ist-nm2.org/ontology/production#&gt;
+			PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; 
+			PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+			PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+			
+			SELECT ?binItem
+			WHERE 
+			{
+				&lt;%1$s&gt; core:hasBinItem|core:hasImplicitContent ?binItem .	
+				OPTIONAL { ?binItem core:hasBeenProcessed ?processed } .
+				FILTER(!BOUND(?processed))	
+			})</value>                
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID4cf0287e1019448eac590a489a5eba5d -->
+
+    <owl:NamedIndividual rdf:about="&production;ID4cf0287e1019448eac590a489a5eba5d">
+        <rdf:type rdf:resource="&core;LinkStructure"/>
+        <rdfs:label>root</rdfs:label>
+        <hasStartItem rdf:resource="&production;ID0a8195b5a1e54d93a65bbdf0a7987a3e"/>
+        <hasLinkStructureItem rdf:resource="&production;ID0a8195b5a1e54d93a65bbdf0a7987a3e"/>
+        <hasLinkStructureItem rdf:resource="&production;ID50b3166ca9e34a6fae165570c978b7a6"/>
+        <hasLinkStructureItem rdf:resource="&production;ID5cd8d3f641204bdeac982fe2f2afd65a"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID4d8d22dde062495480aabdf5a52aae79 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID4d8d22dde062495480aabdf5a52aae79">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>name</key>
+        <value>video</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID50b3166ca9e34a6fae165570c978b7a6 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID50b3166ca9e34a6fae165570c978b7a6">
+        <rdf:type rdf:resource="&core;Link"/>
+        <rdfs:label></rdfs:label>
+        <hasSource rdf:resource="&production;ID0a8195b5a1e54d93a65bbdf0a7987a3e"/>
+        <isLinkStructureItemOf rdf:resource="&production;ID4cf0287e1019448eac590a489a5eba5d"/>
+        <hasDestination rdf:resource="&production;ID5cd8d3f641204bdeac982fe2f2afd65a"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID536f5d5e3852487a96130f305052028e -->
+
+    <owl:NamedIndividual rdf:about="&production;ID536f5d5e3852487a96130f305052028e">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>selectionrule</key>
+        <value>sparql(
+			PREFIX core: &lt;http://www.ist-nm2.org/ontology/core#&gt;
+			PREFIX production: &lt;http://www.ist-nm2.org/ontology/production#&gt;
+			PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; 
+			PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+			PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+			
+			SELECT ?binItem
+			WHERE 
+			{
+				{ 
+					SELECT ?rout
+					WHERE { 
+						?video	core:hasBeenProcessed ?timestamp ;
+								core:contains [ rdfs:label "Video" ] ;
+								core:hasRelativeOut ?rout .
+						{
+							SELECT ( MAX(?ts) AS ?maxTimestamp ) 
+							WHERE { ?iVideo core:hasBeenProcessed ?ts ; core:contains [ rdfs:label "Video"] } 
+						} . FILTER( ?timestamp = ?maxTimestamp ) 
+					}
+				} .
+				?binItem core:hasRelativeIn ?rout ; core:contains [ rdfs:label "Video" ] .
+				&lt;%1$s&gt; core:hasBinItem|core:hasImplicitContent ?binItem .
+				OPTIONAL { ?binItem core:hasBeenProcessed ?processed } .
+				FILTER( !BOUND(?processed) ) .
+			})</value>
+        
+        <!-- Modified for NSL1.1 -->        
+        <!-- select(clips:last_played_member_by_name:ROUT = RIN), 
+        	 default(
+        	 	select( P matches ComposerPerson ), 
+        	 	default( 
+        	 		select( Person matches P ), 
+        	 		default( 
+        	 			select( I matches Instrument ), 
+        	 			alt( select( all ) ) ), 
+        	 		alt( select( all ) ) ), 
+        	 	alt( select( all ) ))								-->
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID549c86fb33364ed8ac60dafe86d3a255 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID549c86fb33364ed8ac60dafe86d3a255">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>expression</key>
+        <value>select(&#39;MediaType&#39; = &#39;Video&#39;)</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID5cd8d3f641204bdeac982fe2f2afd65a -->
+
+    <owl:NamedIndividual rdf:about="&production;ID5cd8d3f641204bdeac982fe2f2afd65a">
+        <rdf:type rdf:resource="&core;BinStructure"/>
+        <rdfs:label>story</rdfs:label>
+        <hasTextualAnnotation rdf:resource="&production;ID0aaff65afa0742f58563487d16454c3e"/>
+        <hasBinItem rdf:resource="&production;ID11f654e5e7124923ad6b78be1ac4d8b1"/>
+        <hasTextualAnnotation rdf:resource="&production;ID1837a0eef3514ddf9172a523cec35884"/>
+        <isLinkStructureItemOf rdf:resource="&production;ID4cf0287e1019448eac590a489a5eba5d"/>
+        <isDestinationOf rdf:resource="&production;ID50b3166ca9e34a6fae165570c978b7a6"/>
+        <hasTextualAnnotation rdf:resource="&production;ID71a7ce077c524198b5e519a510c7ba1e"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID5db586075c734429b6de736f7b4210e3 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID5db586075c734429b6de736f7b4210e3">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>composer</value>
+        <key>name</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID5e0465f32da342ecb6a4625095ee6eb5 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID5e0465f32da342ecb6a4625095ee6eb5">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>delay(1/25)</value>
+        <key>EditingRule</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID681ae54a42e54b869e5eda74c2797b1b -->
+
+    <owl:NamedIndividual rdf:about="&production;ID681ae54a42e54b869e5eda74c2797b1b">
+        <rdf:type rdf:resource="&core;LinkStructure"/>
+        <rdfs:label>soundtrack</rdfs:label>
+        <isLeadingLayerOf rdf:resource="&production;ID11f654e5e7124923ad6b78be1ac4d8b1"/>
+        <isLayerOf rdf:resource="&production;ID11f654e5e7124923ad6b78be1ac4d8b1"/>
+        <hasTextualAnnotation rdf:resource="&production;ID12bbc39fb3854f2eb221b15af6034063"/>
+        <hasStartItem rdf:resource="&production;ID37de6f86e1c542f1ace8846d015b0200"/>
+        <hasLinkStructureItem rdf:resource="&production;ID37de6f86e1c542f1ace8846d015b0200"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID71a7ce077c524198b5e519a510c7ba1e -->
+
+    <owl:NamedIndividual rdf:about="&production;ID71a7ce077c524198b5e519a510c7ba1e">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>terminationcondition</key>
+        <!-- Updated for NSL1.1 -->
+        <!-- <value>condition( length &gt;= ComposerDuration )</value> -->
+        <value>sparql(
+			PREFIX core: &lt;http://www.ist-nm2.org/ontology/core#&gt;
+			PREFIX production: &lt;http://www.ist-nm2.org/ontology/production#&gt;
+			PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; 
+			PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+			PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;			
+			ASK {
+				{
+					SELECT ( COUNT( ?audio ) AS ?audioCount )
+					WHERE { ?audio core:hasBeenProcessed ?timstamp ; core:contains [ rdfs:label "Audio" ] }
+				} .
+				{
+					?contextVariable a core:ContextVariable ;
+						rdfs:label "ComposerDuration" ;
+						core:hasValue ?composerDuration 
+				} .
+				FILTER( ?audioCount &lt; ?composerDuration )
+			})
+		</value>
+	</owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID71f8370f6cb84aa3a7711be180a18252 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID71f8370f6cb84aa3a7711be180a18252">
+        <rdf:type rdf:resource="&core;Link"/>
+        <rdfs:label></rdfs:label>
+        <hasSource rdf:resource="&production;ID80d259629e8b41f2bc0998636dcc30a9"/>
+        <hasDestination rdf:resource="&production;IDd43fe5db5a9a41e18dd11b3db55cb7df"/>
+        <isLinkStructureItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID7cc2031435134c4a98c7a09c68085422 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID7cc2031435134c4a98c7a09c68085422">
+        <rdf:type rdf:resource="&core;ImplicitObject"/>
+        <rdfs:label>clips</rdfs:label>
+        <hasTextualAnnotation rdf:resource="&production;ID0d18b609db2049da9e0f01302340f539"/>
+        <hasTextualAnnotation rdf:resource="&production;ID2a7148d07c7341698cea58a1877f9bec"/>
+        <isDestinationOf rdf:resource="&production;ID3047ae93864f4f00b5012ef92dcb6cb3"/>
+        <hasTextualAnnotation rdf:resource="&production;ID536f5d5e3852487a96130f305052028e"/>
+        <hasTextualAnnotation rdf:resource="&production;IDdce4206cbdbf4d7ab8a1e1d69969c058"/>
+        <isLinkStructureItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+        <hasTextualAnnotation rdf:resource="&production;IDf7c5c82dceb948d4b9145fa4ab2cc3f0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID80d259629e8b41f2bc0998636dcc30a9 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID80d259629e8b41f2bc0998636dcc30a9">
+        <rdf:type rdf:resource="&core;AtomicNarrativeObject"/>
+        <rdfs:label>delayph</rdfs:label>
+        <refersTo rdf:resource="&production;ID1cfe0390a4654337ab702e0f77bd6485"/>
+        <isSourceOf rdf:resource="&production;ID71f8370f6cb84aa3a7711be180a18252"/>
+        <isLinkStructureItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+        <isStartItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID969d8eefa1da4744a0e2d04e739e29d7 -->
+
+    <owl:NamedIndividual rdf:about="&production;ID969d8eefa1da4744a0e2d04e739e29d7">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>name</key>
+        <value>clips</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDae74573240024be7a78540fbc48dcaad -->
+
+    <owl:NamedIndividual rdf:about="&production;IDae74573240024be7a78540fbc48dcaad">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>select(&#39;MediaType&#39; = &#39;Audio&#39;)</value>
+        <key>expression</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDd43fe5db5a9a41e18dd11b3db55cb7df -->
+
+    <owl:NamedIndividual rdf:about="&production;IDd43fe5db5a9a41e18dd11b3db55cb7df">
+        <rdf:type rdf:resource="&core;ImplicitObject"/>
+        <rdfs:label>clips</rdfs:label>
+        <isSourceOf rdf:resource="&production;ID3047ae93864f4f00b5012ef92dcb6cb3"/>
+        <hasTextualAnnotation rdf:resource="&production;ID549c86fb33364ed8ac60dafe86d3a255"/>
+        <isDestinationOf rdf:resource="&production;ID71f8370f6cb84aa3a7711be180a18252"/>
+        <hasTextualAnnotation rdf:resource="&production;ID969d8eefa1da4744a0e2d04e739e29d7"/>
+        <hasTextualAnnotation rdf:resource="&production;IDd61efaa7a81c48eeab5271510f487c81"/>
+        <isLinkStructureItemOf rdf:resource="&production;IDe66c7c11cd454b8a8c223449521990d0"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDd61efaa7a81c48eeab5271510f487c81 -->
+
+    <owl:NamedIndividual rdf:about="&production;IDd61efaa7a81c48eeab5271510f487c81">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>selectionrule</key>
+        <!-- Modified for NSL1.1 -->
+        <!-- <value>select(RIN = sound:last_played_member_by_name:RIN)</value> -->
+        <value>sparql(
+			PREFIX core: &lt;http://www.ist-nm2.org/ontology/core#&gt;
+			PREFIX production: &lt;http://www.ist-nm2.org/ontology/production#&gt;
+			PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; 
+			PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+			PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+			
+			SELECT ?binItem
+			WHERE {
+				{ 	SELECT ?audio
+					WHERE { 
+						?audio core:hasBeenProcessed ?tsAudio ; core:contains [ rdfs:label "Audio" ] .
+						{
+							SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+							WHERE { ?iAudio core:hasBeenProcessed ?tsA ; core:contains [ rdfs:label "Audio"] } 
+						} . FILTER( ?tsAudio = ?maxTsAudio ) 			 
+					}		
+				} .
+				?binItem core:alignsWith ?audio .
+				&lt;%1$s&gt; core:hasBinItem|core:hasImplicitContent ?binItem .	
+				OPTIONAL { ?binItem core:hasBeenProcessed ?processed } .
+				FILTER(!BOUND(?processed)) .
+			})
+		</value>        
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDdce4206cbdbf4d7ab8a1e1d69969c058 -->
+
+    <owl:NamedIndividual rdf:about="&production;IDdce4206cbdbf4d7ab8a1e1d69969c058">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>terminationcondition</key>
+        <!-- Modified for NSL1.1 -->
+        <!--	<value>condition( loop )</value> -->
+        <value>sparql(
+        	PREFIX core: &lt;http://www.ist-nm2.org/ontology/core#&gt;
+        	PREFIX production: &lt;http://www.ist-nm2.org/ontology/production#&gt;
+        	PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; 
+        	PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        	PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; 
+
+			ASK {
+				{ 
+					SELECT ?rOutVideo
+					WHERE { 
+						?video	core:hasBeenProcessed ?tsVideo ;
+								core:contains [ rdfs:label "Video" ] ;
+								core:hasRelativeOut ?rOutVideo .
+						{
+							SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+							WHERE { ?iVideo core:hasBeenProcessed ?tsV ; core:contains [ rdfs:label "Video"] } 
+						} . FILTER( ?tsVideo = ?maxTsVideo ) 
+					}
+				} .
+			
+				{ 
+					SELECT ?rOutAudio
+					WHERE { 
+						?audio	core:hasBeenProcessed ?tsAudio ;
+								core:contains [ rdfs:label "Audio" ] ;
+								core:hasRelativeOut ?rOutAudio .
+						{
+							SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+							WHERE { ?iAudio core:hasBeenProcessed ?tsA ; core:contains [ rdfs:label "Audio"] } 
+						} . FILTER( ?tsAudio = ?maxTsAudio ) 
+					}
+				} .
+				
+				FILTER( ?rOutVideo &lt; ?rOutAudio )
+			})</value>        
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDe3b98b42717f4b13b74a0be0852c954f -->
+
+    <owl:NamedIndividual rdf:about="&production;IDe3b98b42717f4b13b74a0be0852c954f">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <value>sound</value>
+        <key>name</key>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDe66c7c11cd454b8a8c223449521990d0 -->
+
+    <owl:NamedIndividual rdf:about="&production;IDe66c7c11cd454b8a8c223449521990d0">
+        <rdf:type rdf:resource="&core;LinkStructure"/>
+        <rdfs:label>video</rdfs:label>
+        <isLayerOf rdf:resource="&production;ID11f654e5e7124923ad6b78be1ac4d8b1"/>
+        <hasLinkStructureItem rdf:resource="&production;ID3047ae93864f4f00b5012ef92dcb6cb3"/>
+        <hasTextualAnnotation rdf:resource="&production;ID4d8d22dde062495480aabdf5a52aae79"/>
+        <hasLinkStructureItem rdf:resource="&production;ID71f8370f6cb84aa3a7711be180a18252"/>
+        <hasLinkStructureItem rdf:resource="&production;ID7cc2031435134c4a98c7a09c68085422"/>
+        <hasLinkStructureItem rdf:resource="&production;ID80d259629e8b41f2bc0998636dcc30a9"/>
+        <hasStartItem rdf:resource="&production;ID80d259629e8b41f2bc0998636dcc30a9"/>
+        <hasLinkStructureItem rdf:resource="&production;IDd43fe5db5a9a41e18dd11b3db55cb7df"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDeb3087944886499ba6b97fdd5cc742bb -->
+
+    <owl:NamedIndividual rdf:about="&production;IDeb3087944886499ba6b97fdd5cc742bb">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>expression</key>
+        <value>select(name = &#39;StartupMediaObject&#39;)</value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDec55a58fb6a1465982f9cca898bfc5b9 -->
+
+    <owl:NamedIndividual rdf:about="&production;IDec55a58fb6a1465982f9cca898bfc5b9">
+        <rdf:type rdf:resource="&core;MediaObjectGroup"/>
+        <rdfs:label>helper</rdfs:label>
+        <hasChild rdf:resource="&production;ID1cfe0390a4654337ab702e0f77bd6485"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDf7c5c82dceb948d4b9145fa4ab2cc3f0 -->
+
+    <owl:NamedIndividual rdf:about="&production;IDf7c5c82dceb948d4b9145fa4ab2cc3f0">
+        <rdf:type rdf:resource="&core;TextualAnnotation"/>
+        <key>comment</key>
+        <value>graphical(length_override=((ROUT-RIN)/25))
+, 
+default(
+ select(Person matches P or ComposerPerson matches Person),
+ default(
+ select(
+ select( clips:last_played_member_by_name:length &lt; 2 and 
+ Camera = clips:last_played_member_by_name:Camera ),
+ alt( clips:last_played_member_by_name:length &gt;= 2 and 
+ Camera \= clips:last_played_member_by_name:Camera ) ) ),
+ alt( select( all ) )
+)</value>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

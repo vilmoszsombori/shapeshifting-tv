@@ -1,0 +1,26 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX afn: <http://jena.hpl.hp.com/ARQ/function#>
+PREFIX f: <java:tv.shapeshifting.nsl.functions.>
+
+SELECT ?id ?label ?type ?src ?clipBegin ?clipEnd ?fileDuration ?uri
+WHERE 
+{
+	?uri a nsl:MediaItem ; rdfs:label ?label ; nsl:hasMediaContent ?mc ;
+		nsl:hasTemporalAnnotation ?ta .
+	BIND( afn:localname(?uri) AS ?id ) .
+
+	?ta nsl:type "core.inOutTime"^^xsd:string ;
+		nsl:beginTime ?_clipBegin ;
+		nsl:endTime ?_clipEnd .
+	BIND( f:timecodeToSeconds(?_clipBegin) AS ?clipBegin ) .
+	BIND( f:timecodeToSeconds(?_clipEnd) AS ?clipEnd ) .
+			
+	?mc nsl:hasFile ?src ;
+		nsl:hasType ?type ;
+		nsl:hasDuration ?_fileDuration . 
+	BIND( f:timecodeToSeconds(?_fileDuration) AS ?fileDuration ) .
+}

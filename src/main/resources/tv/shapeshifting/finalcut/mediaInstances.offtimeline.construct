@@ -1,0 +1,47 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX f: <java:tv.shapeshifting.nsl.functions.> 
+
+CONSTRUCT { 
+	?temporalAnnotation rdf:type nsl:TemporalAnnotation , owl:NamedIndividual ;
+		nsl:type "core.inOutTime" ;
+		nsl:beginTime ?contentIn ;
+		nsl:endTime ?contentOut ;
+		nsl:name "" .	
+		
+	?mediaItem rdf:type nsl:MediaItem , owl:NamedIndividual ;
+		rdfs:label ?name ;
+		nsl:hasMediaContent ?content ;
+		nsl:hasTemporalAnnotation ?temporalAnnotation ;
+		nsl:hasRelativeIn ?rin ; 
+		nsl:hasRelativeOut ?rout ;
+		nsl:contains ?type .
+
+} WHERE {
+	{
+		SELECT (MIN(?time) AS ?tMin) (MAX(?time) AS ?tMax)
+		WHERE {
+			?marker rdf:type production:Marker ; nsl:hasRelativeIn ?time .
+		}
+	} .
+	
+	?content a nsl:MediaContent  ; 
+		rdfs:label ?label ; 
+		nsl:hasRelativeIn ?rin ; 
+		nsl:hasRelativeOut ?rout ; 
+		nsl:hasType ?contentType . 
+		FILTER( ?rin >= ?tMax || ?rout <= ?tMin ) .
+	
+	BIND( concat(?label, '_', str(?rin)) AS ?name ) .
+	BIND( xsd:long(0) AS ?contentIn ) .
+	BIND( xsd:long(?rout - ?rin) AS ?contentOut ) .	
+	BIND( iri(concat('production:', f:uuid())) AS ?mediaItem ) .
+	BIND( iri(concat('production:', f:uuid())) AS ?temporalAnnotation ) .
+	
+	?type rdfs:label ?itemType FILTER regex(?itemType, ?contentType, "i") .	
+
+} 

@@ -1,0 +1,17 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+ 
+
+SELECT ?no ?code ?in ?out
+WHERE 
+{
+	?no core:hasTemporalAnnotation ?ta .
+	?ta core:type "code"^^xsd:string ;
+		core:name ?code ; 
+		core:beginTime ?in ;
+		core:endTime ?out .
+	FILTER regex(?code, "^[\\s]*set\\(([^\\(\\)\\,]+),([^\\(\\)\\,]+)\\)[\\s\\,]*")
+}

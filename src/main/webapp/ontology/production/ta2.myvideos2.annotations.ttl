@@ -1,0 +1,819 @@
+#################################################################
+#
+#    MyVideos 2.0 Annotation ontology
+#
+#################################################################
+
+@prefix : <http://shapeshifting.tv/ontology/production#> .
+@prefix nsl: <http://shapeshifting.tv/ontology/nsl#> .
+@prefix production: <http://shapeshifting.tv/ontology/production#> .
+
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@base <http://shapeshifting.tv/ontology/production> .
+
+<http://shapeshifting.tv/ontology/production> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://shapeshifting.tv/ontology/production#hasPerformer
+
+production:hasPerformer rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:domain production:IDa2a965109582446aa8e8a8de048efbe8 ;
+                        
+                        rdfs:range production:Performer .
+
+
+
+###  http://shapeshifting.tv/ontology/production#performsIn
+
+production:performsIn rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:range production:IDa2a965109582446aa8e8a8de048efbe8 ;
+                      
+                      rdfs:domain production:Performer ;
+                      
+                      owl:inverseOf production:hasPerformer .
+
+
+###  http://shapeshifting.tv/ontology/production#hasSubEvent
+
+production:hasSubEvent rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:domain production:IDa2a965109582446aa8e8a8de048efbe8 ;
+                        
+                        rdfs:range production:IDa2a965109582446aa8e8a8de048efbe8 .
+
+
+
+###  http://shapeshifting.tv/ontology/production#subEventOf
+
+production:subEventOf rdf:type owl:ObjectProperty ;
+                      
+                      rdfs:range production:IDa2a965109582446aa8e8a8de048efbe8 ;
+                      
+                      rdfs:domain production:IDa2a965109582446aa8e8a8de048efbe8 ;
+                      
+                      owl:inverseOf production:hasSubEvent .
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+production:IDa2a965109582446aa8e8a8de048efbe8 rdf:type owl:Class ;
+	 rdfs:label "Event" ;
+	 rdfs:subClassOf nsl:LogicalEntity .
+	 
+production:IDaed389620f0b4b11b71f9a0035961ac0 rdf:type production:IDa2a965109582446aa8e8a8de048efbe8 , owl:NamedIndividual ;	 
+	 rdfs:label "Woodbridge School Concert" ;
+	 nsl:hasRelativeIn "600000"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	 nsl:hasRelativeOut "5376480"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDcac8dff97e3241ed9a880fcb9ceb57c0 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDaed389620f0b4b11b71f9a0035961ac0 ; 
+ 	nsl:hasRelativeIn "600000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "948720"^^<http://www.w3.org/2001/XMLSchema#long>  .
+
+production:IDe37b0bc5948f4da6893f9338a2353de3 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDaed389620f0b4b11b71f9a0035961ac0 ; 
+ 	nsl:hasRelativeIn "5209320"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "5376480"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID8d9d8d3c2e884906b6b9521d53a7c624 rdf:type production:Speech , owl:NamedIndividual ;
+ 	production:subEventOf production:IDaed389620f0b4b11b71f9a0035961ac0 ; 
+ 	nsl:hasRelativeIn "735960"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "825280"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID35ed2c2bcf324b00b1e7c757f135c54e rdf:type production:Speech , owl:NamedIndividual ;
+ 	production:subEventOf production:IDaed389620f0b4b11b71f9a0035961ac0 ; 
+ 	nsl:hasRelativeIn "825280"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "948720"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+
+ 	
+production:ID700c72de272b46d983cb8a6ef1424b7f rdf:type production:IDa2a965109582446aa8e8a8de048efbe8 , owl:NamedIndividual ;
+	 rdfs:label "Hall" ;
+	 nsl:hasRelativeIn "948720"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	 nsl:hasRelativeOut "5209320"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+
+
+#production:ID2b1d4b6b328c4d93aec9c448e344e9ff
+#production:IDf917d025db54484c8bf80a364b57470d
+#production:ID137b94d685f9453fb2b621ae847080c4
+
+
+
+### IDcc8939ab65bd4c3683aaaa1b858f74fc
+
+production:Person rdf:type owl:Class ;
+	 rdfs:label "Person" ;
+	 rdfs:subClassOf nsl:LogicalEntity .
+
+### production:IDd029612449c3473d91838492fa914141
+	 
+production:Performer rdf:type owl:Class ;
+	 rdfs:label "Performer" ;
+	 rdfs:subClassOf production:Person .
+	
+production:Cameraman rdf:type owl:Class ;
+	 rdfs:label "Cameraman" ;
+	 rdfs:subClassOf production:Person .
+	 
+production:ID7313ac7b8a1549c5a7d8c15a69907116 rdf:type owl:Class ;
+	 rdfs:label "MediaType" ;
+	 rdfs:subClassOf nsl:LogicalEntity .
+	 
+production:ID9e076d699a7648cd9d590098c3aba94b rdf:type production:ID7313ac7b8a1549c5a7d8c15a69907116 , owl:NamedIndividual ; 
+	rdfs:label "Audio" .
+
+production:ID829e90729f7b449791da65dfc2b5d61c rdf:type production:ID7313ac7b8a1549c5a7d8c15a69907116 , owl:NamedIndividual ; 
+	rdfs:label "Video" .
+
+### production:ID49c778d6fce94cddb730a8dcb38d4d77
+	
+production:Song rdf:type owl:Class ;
+	rdfs:label "Song" ;
+	rdfs:subClassOf production:IDa2a965109582446aa8e8a8de048efbe8 .
+
+production:Rehearsal rdf:type production:IDa2a965109582446aa8e8a8de048efbe8 , owl:NamedIndividual ;
+	rdfs:label "Rehearsal" .
+		
+production:Speech rdf:type owl:Class ;
+	rdfs:label "Speech" ;
+	rdfs:subClassOf production:IDa2a965109582446aa8e8a8de048efbe8 .
+
+production:Stage rdf:type owl:Class ;
+	rdfs:label "Stage" ;
+	rdfs:subClassOf production:IDa2a965109582446aa8e8a8de048efbe8 .
+
+production:Intro rdf:type owl:Class ;
+	rdfs:label "Intro" ;
+	rdfs:subClassOf production:Stage .
+	 
+production:Body rdf:type owl:Class ;
+	rdfs:label "Body" ;
+	rdfs:subClassOf production:Stage .
+
+production:Conclusion rdf:type owl:Class ;
+	rdfs:label "Conclusion" ;
+	rdfs:subClassOf production:Stage .
+
+production:Applause rdf:type owl:Class ;
+	rdfs:label "Applause" ;
+	rdfs:subClassOf production:Stage .
+
+production:Highlight rdf:type owl:Class ;
+	rdfs:label "Highlight" ;
+	rdfs:subClassOf production:Stage .
+
+production:ShotType rdf:type owl:Class ;
+	rdfs:label "ShotType" ;
+	rdfs:subClassOf nsl:LogicalEntity .
+
+production:WideShot rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "WideShot" .
+
+production:MediumShot rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "MediumShot" .
+
+production:CloseUp rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "CloseUp" .
+
+production:InstrumentClose rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "InstrumentClose" .
+
+production:EstablishingShot rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "EstablishingShot" .
+
+production:Cutaways rdf:type production:ShotType , owl:NamedIndividual ;
+	rdfs:label "Cutaways" .
+
+
+
+#################################################################
+#
+#    Performers
+#
+#################################################################
+
+production:IDed0210568ee5422b8f1bd15f10a7a03e rdf:type production:Person , owl:NamedIndividual ;
+	rdfs:label "Audience" .
+
+production:ID6312d4683d8f46a09ce6b110caaa55b5 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Tom Berry" ;
+	nsl:imgUrl "rs/img/performers/TomBerry.png" .
+
+production:ID81a0a02a457645f08dd846e1a30662f8 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "William Boynton" ;
+	nsl:imgUrl "rs/img/performers/WilliamBoynton.png" .
+
+production:ID0b0f7be17d6047ae871b5c8f01a4a014 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Ryan Frost" ;
+	nsl:imgUrl "rs/img/performers/RyanFrost.png" .
+	
+production:IDf2a0eef931e74a089ef8d1190805f2cd rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Alice Rout" ;
+	nsl:imgUrl "rs/img/performers/AliceRout.png" .
+
+production:ID7f1bd76d11da405b8534ee44e2f5b1b8 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Susan Conquer" ;
+	nsl:imgUrl "rs/img/performers/SusanConquer.png" .
+
+production:ID955aaa8966ff4f14af97abbaed328658 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Honor-May Moggridge" ;
+	nsl:imgUrl "rs/img/performers/Honor-MayMoggridge.png" .
+
+production:IDd74e9e2ff8b543ad83c590f523c2e5b0 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Willian Whyte" ;
+	nsl:imgUrl "rs/img/performers/WillianWhyte.png" .
+
+production:ID499834fa8ffe4706bebb94010a9db2e9 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Andrew Wills" ;
+	nsl:imgUrl "rs/img/performers/AndrewWills.png" .
+
+production:ID3c3dd7cbfaf14356b555556f7210d861 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Eleanor Lord" ;
+	nsl:imgUrl "rs/img/performers/EleanorLord.png" .
+
+production:ID452f05c9e98e4de2872ccb950ac4e88e rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Elena Hobbs" ;
+	nsl:imgUrl "rs/img/performers/ElenaHobbs.png" .
+
+production:ID2b3825e7434442eba035e58a54a14cfd rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Helen Poulter" ;
+	nsl:imgUrl "rs/img/performers/HelenPoulter.png" .
+
+production:ID2a52355c86f249f1953e4f5e749d975f rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Kenneth Law" ;
+	nsl:imgUrl "rs/img/performers/KennethLaw.png" .
+
+production:ID81e33ea259974f1a806bc198434e95b2 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Lara Agar" ;
+	nsl:imgUrl "rs/img/performers/LaraAgar.png" .
+
+production:ID2a44250609664718a0ae9590963c29f2 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Owen Dawson" ;
+	nsl:imgUrl "rs/img/performers/OwenDawson.png" .
+
+production:IDe18ee5ef0c7345639860d7dd1d529f7f rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Ollie Norman" ;
+	nsl:imgUrl "rs/img/performers/OliverNorman.png" .
+
+production:ID4eabe630d7a2441a8c3feeb7d4c02eac rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Simon Woodbridge" ;
+	nsl:imgUrl "rs/img/performers/SimonWoodbridge.png" .
+
+production:IDcb2b0bacc73549cb8b4edf8c0d2c1c99 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Sophie Bowes" ;
+	nsl:imgUrl "rs/img/performers/SophieBowes.png" .
+
+production:ID2fbf246714644632b3a47f3181c3089d rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "Isabel Stevens" ;
+	nsl:imgUrl "rs/img/performers/IsabelStevens.png" .
+	
+production:ID17113b0ab94a46f4af97dea2163554b9 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "PeoplePianist" .
+	 
+production:ID97eb9465557f4e1abd2e0db8c2bdae58 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "PeopleRedFaceMan" .
+	 
+production:ID2c3c1924ea12410b939957dec77bc337 rdf:type production:Performer , owl:NamedIndividual ;
+	rdfs:label "PeopleHeadTeacher" .
+	 
+
+#################################################################
+#
+#    Cameramen
+#
+#################################################################
+	 
+production:IDdb7753549f83461e971b1abd3e9d049b rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraMichael" .
+	 
+production:IDd4f38a2446124ec58052651c5000679f rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraOllieNorman" .
+	 
+production:ID21d8c7c3772a400f9da321957f04f5f4 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraRodrigo" .
+	 
+production:IDcced8c0bf65649a0b7ba6adf809c6c40 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "StephenConquer" .
+ 
+production:ID9e2425bc33bc44659829f7ff921b78a3 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraJonWills" .
+
+production:ID70f61828eeb14a41917c87c51b571481 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraJulieHill" .
+
+production:IDe9dff8ab485d4764b16cfdd547a098fd rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "Iphone" .
+
+production:IDe5f3d35920fa43c5a0ca1a5dac974833 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraIanKegel" .
+
+production:ID0ee73be851a84558b6114e0236bc5ef6 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraGoldsborough" .
+
+production:IDb46a93333f974ccc8268fd587a4981da rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraAntonyAgar" .
+
+production:ID01aa8c4dea16422883dd6662f784a9f0 rdf:type production:Cameraman , owl:NamedIndividual ;
+	rdfs:label "CameraAndrewLord" .
+
+
+#################################################################
+#
+#    Songs
+#
+#################################################################
+
+production:IDd6be4debfd0c463fb6615259d9555c74 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Vieni, Vieni O Mio Diletto (Vivaldi)" ;
+	nsl:hasRelativeIn "948720"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1152680"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/VieniVieni.jpg" ;	
+	production:hasPerformer production:ID955aaa8966ff4f14af97abbaed328658 .	
+
+production:IDda63b03df64d4faf880e0566d34f5769 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Fantasy (Lark)" ;
+	nsl:hasRelativeIn "1152680"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1790000"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/Fantasy.jpg" ;	
+	production:hasPerformer production:IDd74e9e2ff8b543ad83c590f523c2e5b0 .
+
+production:ID388e3a36aaa94103ba5ceb83252a2d7e rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "The A Team (Sheeran)" ;
+	nsl:hasRelativeIn "1790000"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut  "2096920"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/ATeam.jpg" ;	
+	production:hasPerformer production:ID452f05c9e98e4de2872ccb950ac4e88e , production:ID6312d4683d8f46a09ce6b110caaa55b5 .
+
+production:ID0c3c1742f284474a82f79c2972e2ceaa rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Hungarian Rhapsody (Popper)" ;
+	nsl:hasRelativeIn "2096920"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2753280"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/HungarianRhapsody.jpg" ;	
+	production:hasPerformer production:ID499834fa8ffe4706bebb94010a9db2e9 .
+
+production:IDc639bd1f6c0a43b0a0b2cb52d167e908 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Music for a While (Purcell)" ;
+	nsl:hasRelativeIn "2753280"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "3005000"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/MusicForAWhile.jpg" ;	
+	production:hasPerformer production:ID2fbf246714644632b3a47f3181c3089d .	
+
+production:ID8b44ef3d87e840baad207cfa891188b6 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Dance Espagnole (de Falla)" ;
+	nsl:hasRelativeIn "3005000"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "3276400"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/DanceEspagnole.jpg" ;	
+	production:hasPerformer production:ID4eabe630d7a2441a8c3feeb7d4c02eac .
+
+production:IDbfbae9b9d08942d38e735ef6ccb45d53 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "The Man I Love (Gershwin)" ;
+	nsl:hasRelativeIn "3276400"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "3628160"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/TheManILove.jpg" ;	
+	production:hasPerformer production:ID2b3825e7434442eba035e58a54a14cfd .
+
+production:IDda5c54cf3415425e922eb83c686efcb9 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Spring Wind (Thiman)" ;
+	nsl:hasRelativeIn "3628160"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "3779360"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/SpringWind.jpg" ;	
+	production:hasPerformer production:IDf2a0eef931e74a089ef8d1190805f2cd , production:ID7f1bd76d11da405b8534ee44e2f5b1b8 .
+
+production:IDa1847427389a4805b13f72e6c6b0f89a rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Allemanda from Partita II (Bach)" ;
+	nsl:hasRelativeIn "3779360"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "3984280"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/Allemanda.jpg" ;	
+	production:hasPerformer production:ID81e33ea259974f1a806bc198434e95b2 .
+	
+production:IDa715f6549d204315b3ea9b1c3721e721 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Adagio & Allegro from Sonata No 6 in E (Bach)" ;
+	nsl:hasRelativeIn "3984280"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4287640"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/AdagioAllegro.jpg" ;	
+	production:hasPerformer production:IDcb2b0bacc73549cb8b4edf8c0d2c1c99 .
+
+production:ID9ab538e7525c45ce865ceed3522630b1 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "The Impossible Dream (Leigh)" ;
+	nsl:hasRelativeIn "4287640"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4486560"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/ImpossibleDream.jpg" ;	
+	production:hasPerformer production:IDe18ee5ef0c7345639860d7dd1d529f7f .
+
+production:ID6e4bfa66457f430990c596814be20ce4 rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Abscheid (Schumann)" ;
+	nsl:hasRelativeIn "4486560"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4728080"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/Abscheid.jpg" ;	
+	production:hasPerformer production:ID3c3dd7cbfaf14356b555556f7210d861 .
+	
+production:IDdda2bbd382a5432eac6bc332e3df0a2a rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "First Movement of Winter Concerto (Vivaldi)" ;
+	nsl:hasRelativeIn "4728080"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "5039600"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/WinterConcerto.jpg" ;	
+	production:hasPerformer production:ID2a52355c86f249f1953e4f5e749d975f .
+
+production:IDeedc5ad6d9b14c65a52f35142ef8a9ae rdf:type production:Song , owl:NamedIndividual ;
+	rdfs:label "Scarborough Fair (Trad arr Reichenbach)" ;
+	nsl:hasRelativeIn "5039600"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "5376480"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:imgUrl "rs/img/songs/ScarboroughFair.jpg" ;	
+	production:hasPerformer production:ID0b0f7be17d6047ae871b5c8f01a4a014 , production:ID2a44250609664718a0ae9590963c29f2 , production:ID81a0a02a457645f08dd846e1a30662f8 , production:IDd74e9e2ff8b543ad83c590f523c2e5b0 .
+
+#################################################################
+#
+#    Highlights
+#
+#################################################################
+	
+production:IDbda9bf1c40704a2aa66cb4f6aef27e9f rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDd6be4debfd0c463fb6615259d9555c74 ;
+	nsl:hasRelativeIn "1038320"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1057280"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID7116e9173dea43e0a6264aa353d12aa6 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDd6be4debfd0c463fb6615259d9555c74 ;
+	nsl:hasRelativeIn "1101400"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1110840"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID49f88dfea72f4b0d884f0f5c0671f72e rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDda63b03df64d4faf880e0566d34f5769 ;
+	nsl:hasRelativeIn "1223320"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1242600"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDece23d2a0b684a29830a2836a9b8f1fb rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDda63b03df64d4faf880e0566d34f5769 ;
+	nsl:hasRelativeIn "1348920"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1366160"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID020f470bf6024c9f93ad2fc5c4fcd454 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID388e3a36aaa94103ba5ceb83252a2d7e ;
+	nsl:hasRelativeIn "1929120"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "1951160"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID3a91c388201a4873860d967f5acdf05f rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID388e3a36aaa94103ba5ceb83252a2d7e ;
+	nsl:hasRelativeIn "1991800"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2003520"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID0f0d1f59b26f414881c068f171b011d5 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID0c3c1742f284474a82f79c2972e2ceaa ;
+	nsl:hasRelativeIn "2252480"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2294040"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID1759c207606643d092ace3a26220f12c rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID0c3c1742f284474a82f79c2972e2ceaa ;
+	nsl:hasRelativeIn "2494880"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2561280"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID31c24596e40d49be8e1ebd6efc34e04a rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDc639bd1f6c0a43b0a0b2cb52d167e908 ;
+	nsl:hasRelativeIn "2793640"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2813200"^^<http://www.w3.org/2001/XMLSchema#long> .
+	
+production:ID60db8a910f5b48cf9aa1a8338b775956 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDc639bd1f6c0a43b0a0b2cb52d167e908 ;
+	nsl:hasRelativeIn "2877360"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "2895720"^^<http://www.w3.org/2001/XMLSchema#long> .
+	
+production:ID6e2d962cfc46445e8ec71a93eb731e89 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID8b44ef3d87e840baad207cfa891188b6 ;
+	nsl:hasRelativeIn "3087120"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3104520"^^<http://www.w3.org/2001/XMLSchema#long> .
+	
+production:ID44745b74450a466eb3683910d0ec1bad rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID8b44ef3d87e840baad207cfa891188b6 ;
+	nsl:hasRelativeIn "3167280"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3186600"^^<http://www.w3.org/2001/XMLSchema#long> .
+	
+production:ID64763c3841ee43b582abd20cdb22e277 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDbfbae9b9d08942d38e735ef6ccb45d53 ;
+	nsl:hasRelativeIn "3348680"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3368200"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID399e412104704ef49849bb97c4759945 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDbfbae9b9d08942d38e735ef6ccb45d53 ;
+	nsl:hasRelativeIn "3429720"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3463680"^^<http://www.w3.org/2001/XMLSchema#long> .
+		
+production:ID75c00b93135540d99115eba4a4b01dfb rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDda5c54cf3415425e922eb83c686efcb9 ;
+	nsl:hasRelativeIn "3649560"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3678920"^^<http://www.w3.org/2001/XMLSchema#long> .
+		
+production:IDdf9f536216c243229ab518825aa4b2ca rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDda5c54cf3415425e922eb83c686efcb9 ;
+	nsl:hasRelativeIn "3698120"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3716240"^^<http://www.w3.org/2001/XMLSchema#long> .
+		
+production:ID0f5057228b0f43c9bae1819b80573c99 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDa1847427389a4805b13f72e6c6b0f89a ;
+	nsl:hasRelativeIn "3839200"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3862040"^^<http://www.w3.org/2001/XMLSchema#long> .
+		
+production:ID21b4c0f0fb4449b3ad4f7f7c10bcd502 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDa1847427389a4805b13f72e6c6b0f89a ;
+	nsl:hasRelativeIn "3907640"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "3925000"^^<http://www.w3.org/2001/XMLSchema#long> .
+		
+production:ID365f02a35deb441e813e5cc9cbbc27e2 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDa715f6549d204315b3ea9b1c3721e721 ;
+	nsl:hasRelativeIn "4052800"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4073600"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:ID4d9897e55a03471dab5c10db331957e4 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDa715f6549d204315b3ea9b1c3721e721 ;
+	nsl:hasRelativeIn "4206800"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4227720"^^<http://www.w3.org/2001/XMLSchema#long> .
+			 
+production:ID47a482f202cf4fcfb8f8951b985f2521 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID9ab538e7525c45ce865ceed3522630b1 ;
+	nsl:hasRelativeIn "4392880"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4408840"^^<http://www.w3.org/2001/XMLSchema#long> .
+			 
+production:ID07ea9cfebd8648f4be0c8185f12fb413 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID9ab538e7525c45ce865ceed3522630b1 ;
+	nsl:hasRelativeIn "4438720"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4467680"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:ID5faf01df6b6d4086a03087035e00b4aa rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID6e4bfa66457f430990c596814be20ce4 ;
+	nsl:hasRelativeIn "4556040"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "4571960"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:IDf3dee85b7b8148c89693e5b4ccf93769 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:ID6e4bfa66457f430990c596814be20ce4 ;
+	nsl:hasRelativeIn "4646200"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4670080"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:IDec35252ee85c4ed48b9bd7d6ab018c6a rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDdda2bbd382a5432eac6bc332e3df0a2a ;
+	nsl:hasRelativeIn "4842640"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4864000"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:ID0277b9636b1043a7ae3b22b29218797e rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDdda2bbd382a5432eac6bc332e3df0a2a ;
+	nsl:hasRelativeIn "4903720"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "4920680"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:ID4585e20eb3da42f28999f54c548dd5b2 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDeedc5ad6d9b14c65a52f35142ef8a9ae ;
+	nsl:hasRelativeIn "5111320"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "5126800"^^<http://www.w3.org/2001/XMLSchema#long> .
+			
+production:ID7976090c404a4fb79e30adc4be5c8e45 rdf:type production:Highlight , owl:NamedIndividual ;
+	production:subEventOf production:IDeedc5ad6d9b14c65a52f35142ef8a9ae ;
+	nsl:hasRelativeIn "5151720"^^<http://www.w3.org/2001/XMLSchema#long> ;
+	nsl:hasRelativeOut "5166440"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+			
+#################################################################
+#
+#    Song conclusions
+#
+#################################################################
+
+production:IDf0ecb9c1e8a549c9aa00a4b766e21a5a rdf:type production:Conclusion , owl:NamedIndividual ;
+	production:subEventOf production:IDd6be4debfd0c463fb6615259d9555c74 ; 
+	nsl:hasRelativeIn "1110840"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "1133960"^^<http://www.w3.org/2001/XMLSchema#long> .
+	
+production:ID7657cabd99e84b0c83f0b7353ecbc415 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda63b03df64d4faf880e0566d34f5769 ; 
+ 	nsl:hasRelativeIn "1698000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "1774680"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID4e675c6d4f4c443fabfd6546844a70b1 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:ID388e3a36aaa94103ba5ceb83252a2d7e ; 
+ 	nsl:hasRelativeIn "2040960"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2067880"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID041e45f073314f7ca6f68aa4268b597f rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:ID0c3c1742f284474a82f79c2972e2ceaa ; 
+ 	nsl:hasRelativeIn "2686000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2723320"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID8f1fcba5e00b42d8a4b2e1839d15c86d rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDc639bd1f6c0a43b0a0b2cb52d167e908 ; 
+ 	nsl:hasRelativeIn "2967880"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2981440"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDcb1c4c8979424b3ab7052bb5073d08a6 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:ID8b44ef3d87e840baad207cfa891188b6 ; 
+ 	nsl:hasRelativeIn "3215280"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3259640"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDb1c56ceecc8d4ccaabdedbca068e83f3 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDbfbae9b9d08942d38e735ef6ccb45d53 ; 
+ 	nsl:hasRelativeIn "3564880"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3601640"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDd6cb9716f1974be98282e2eac10c725f rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda5c54cf3415425e922eb83c686efcb9 ; 
+ 	nsl:hasRelativeIn "3716240"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3757120"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:IDf441a6eda68f49f3a5d9022f4dbb6773 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa1847427389a4805b13f72e6c6b0f89a ; 
+ 	nsl:hasRelativeIn "3925000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3969240"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDdc1fed9f353044b7aa789d1e585117c1 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa715f6549d204315b3ea9b1c3721e721 ; 
+ 	nsl:hasRelativeIn "4248000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4270440"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID374d44014e3846299e68f3326d5355bc rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:ID9ab538e7525c45ce865ceed3522630b1 ; 
+ 	nsl:hasRelativeIn "4456240"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4471320"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDb054851bdc22452b9749b0ba1733f57a rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:ID6e4bfa66457f430990c596814be20ce4 ; 
+ 	nsl:hasRelativeIn "4682120"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4707880"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID081fd020622b4ceabfc6acfbfd2775de rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDdda2bbd382a5432eac6bc332e3df0a2a ; 
+ 	nsl:hasRelativeIn "4965320"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "5007480"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDed5f19912ad7435eb11058ba9dc5fa90 rdf:type production:Conclusion , owl:NamedIndividual ;
+ 	production:subEventOf production:IDeedc5ad6d9b14c65a52f35142ef8a9ae ; 
+ 	nsl:hasRelativeIn "5166440"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "5186200"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+
+#################################################################
+#
+#    Song applause
+#
+#################################################################
+ 	
+production:IDc71dbf59cc184039b5e94fa32eb746d1 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDd6be4debfd0c463fb6615259d9555c74 ; 
+ 	nsl:hasRelativeIn "1133960"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "1152680"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID1bbd7ae5f9124cd7b53e007894067931 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda63b03df64d4faf880e0566d34f5769 ; 
+ 	nsl:hasRelativeIn "1774680"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "1790000"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID5d70b88b2b0d4aa1a62186b32656bbe1 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:ID388e3a36aaa94103ba5ceb83252a2d7e ; 
+ 	nsl:hasRelativeIn "2067880"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2096920"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID2724d4fc3d04472db0e55d9b5a2c7c37 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:ID0c3c1742f284474a82f79c2972e2ceaa ; 
+ 	nsl:hasRelativeIn "2723320"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2753280"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID2f2e83088d1242309be464a2a4fcd5c0 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDc639bd1f6c0a43b0a0b2cb52d167e908 ; 
+ 	nsl:hasRelativeIn "2981440"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3005000"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDc53efaa7cb9744a7833ddbfa11c70f01 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:ID8b44ef3d87e840baad207cfa891188b6 ; 
+ 	nsl:hasRelativeIn "3259640"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3276400"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDddcf2297ff0640389aa0ea1e5dca9a54 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDbfbae9b9d08942d38e735ef6ccb45d53 ; 
+ 	nsl:hasRelativeIn "3601640"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3628160"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDc8180b891f7f443db66d3a78c7877846 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda5c54cf3415425e922eb83c686efcb9 ; 
+ 	nsl:hasRelativeIn "3757120"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3779360"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID8a9dec9a68744702a5a72db6aabb87e8 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa1847427389a4805b13f72e6c6b0f89a ; 
+ 	nsl:hasRelativeIn "3969240"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3984280"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDfc594ccc22d144ff8a0da95472d132c3 rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa715f6549d204315b3ea9b1c3721e721 ; 
+ 	nsl:hasRelativeIn "4270440"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4287640"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDedf2abc98f3e4999bea92eaff0071d9f rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:ID9ab538e7525c45ce865ceed3522630b1 ; 
+ 	nsl:hasRelativeIn "4471320"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4486560"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDf8d3973dd43249528a9dce7e3f4b47cf rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:ID6e4bfa66457f430990c596814be20ce4 ; 
+ 	nsl:hasRelativeIn "4707880"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4728080"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID7d055fb238a34bd899dc6ca42b54da4b rdf:type production:Applause , owl:NamedIndividual ;
+ 	production:subEventOf production:IDdda2bbd382a5432eac6bc332e3df0a2a ; 
+ 	nsl:hasRelativeIn "5007480"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "5039600"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+production:ID2726ce12b2a947178ccbca4cc871bcf9 rdf:type production:Applause , owl:NamedIndividual ; 	
+	production:subEventOf production:IDeedc5ad6d9b14c65a52f35142ef8a9ae ; 
+	nsl:hasRelativeIn "5186200"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+	nsl:hasRelativeOut "5209320"^^<http://www.w3.org/2001/XMLSchema#long> .
+
+
+#################################################################
+#
+#    Song intro
+#
+#################################################################
+ 	
+production:ID718f187b765f491a979ebcb6545cc69b rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDd6be4debfd0c463fb6615259d9555c74 ; 
+ 	nsl:hasRelativeIn "948720"^^<http://www.w3.org/2001/XMLSchema#long>  ; 
+ 	nsl:hasRelativeOut "976160"^^<http://www.w3.org/2001/XMLSchema#long>  .
+ 	
+production:IDd01b4879ab4f4d069300e9efea24e88e rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda63b03df64d4faf880e0566d34f5769 ; 
+ 	nsl:hasRelativeIn "1152680"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "1186920"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDcc7f28a123694744aa17f1c13b518207 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:ID388e3a36aaa94103ba5ceb83252a2d7e ; 
+ 	nsl:hasRelativeIn "1790000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "1815640"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDe45cec5ad0894cbeb2db8b76cebd97ec rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:ID0c3c1742f284474a82f79c2972e2ceaa ; 
+ 	nsl:hasRelativeIn "2096920"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2199840"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID9eddda262e224bb28483bf8de99cf38f rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDc639bd1f6c0a43b0a0b2cb52d167e908 ; 
+ 	nsl:hasRelativeIn "2753280"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "2774840"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID47ba4c4b706740f7859eb18567ebaaa7 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:ID8b44ef3d87e840baad207cfa891188b6 ; 
+ 	nsl:hasRelativeIn "3005000"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3051560"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDa4aff5a9480e4466845b8ad49e84a4c6 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDbfbae9b9d08942d38e735ef6ccb45d53 ; 
+ 	nsl:hasRelativeIn "3276400"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3295800"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDfd4f18827f4542ff95c1acb332b4b100 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDda5c54cf3415425e922eb83c686efcb9 ; 
+ 	nsl:hasRelativeIn "3628160"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3639240"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID417a5b3c3ea143d189fda6a7d7d360e1 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa1847427389a4805b13f72e6c6b0f89a ; 
+ 	nsl:hasRelativeIn "3779360"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "3804720"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID5e607d08167741a7bb09336d2c95d2f6 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDa715f6549d204315b3ea9b1c3721e721 ; 
+ 	nsl:hasRelativeIn "3984280"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4002880"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDf224d3ae05454dbbba0f99afb75a6d14 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:ID9ab538e7525c45ce865ceed3522630b1 ; 
+ 	nsl:hasRelativeIn "4287640"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4348800"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID5fe1bf6f829a46f498a1be0b05a6eeb3 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:ID6e4bfa66457f430990c596814be20ce4 ; 
+ 	nsl:hasRelativeIn "4486560"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4496000"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:IDd63ceeaed6394906aa5d56eabce5a59d rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDdda2bbd382a5432eac6bc332e3df0a2a ; 
+ 	nsl:hasRelativeIn "4728080"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "4774400"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 	
+production:ID7235cd21f4de4b68b886c9bfad02cdd5 rdf:type production:Intro , owl:NamedIndividual ;
+ 	production:subEventOf production:IDeedc5ad6d9b14c65a52f35142ef8a9ae ; 
+ 	nsl:hasRelativeIn "5039600"^^<http://www.w3.org/2001/XMLSchema#long> ; 
+ 	nsl:hasRelativeOut "5075120"^^<http://www.w3.org/2001/XMLSchema#long> .
+ 

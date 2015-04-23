@@ -1,0 +1,103 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX f: <java:tv.shapeshifting.nsl.functions.> 
+
+SELECT DISTINCT ?label ?actionUrl ?begin ?duration ?imgUrl
+WHERE {
+	##
+	# This part is for Narrative Objects; these don't have intrinsic timing information
+	##
+	{ 
+		SELECT ?label ?actionUrl ?begin ?duration ?imgUrl 
+		WHERE {
+			<%1$s>  nsl:hasInteraction ?interaction ;
+					a nsl:NarrativeObject ;
+					nsl:startsWith ?mediaObject ;
+					nsl:hasDuration ?dur .
+			?interaction rdfs:label ?label ;
+						 nsl:startOffset ?startOffset ;
+						 nsl:endOffset ?endOffset ;
+						 nsl:actionUrl ?actionUrl .
+			BIND( xsd:long(?dur - ?startOffset - ?endOffset) AS ?duration ) .
+			BIND( concat(f:formatUri(?mediaObject), '.begin+', str(?startOffset / 1000), 's') AS ?begin ) .
+			
+			OPTIONAL {
+				?interaction nsl:imgUrl ?imgUrl .
+			} .
+		}
+	} 
+	
+	UNION
+
+	##
+	# This part is for Media Items; these do have intrinsic timing information
+	##
+	{ 
+		SELECT ?label ?actionUrl ?begin ?duration ?imgUrl
+		WHERE {
+			<%1$s>  nsl:hasInteraction ?interaction ;
+					a nsl:MediaItem ;
+					nsl:hasDuration ?dur .
+			?interaction rdfs:label ?label ;
+						 nsl:actionUrl ?actionUrl .
+						 
+			OPTIONAL {				
+				?interaction nsl:startOffset ?startOffset ;
+							 nsl:endOffset ?endOffset .
+				BIND( xsd:long(?dur - ?startOffset - ?endOffset) AS ?duration ) .
+				BIND( concat(f:formatUri(iri('%1$s')), '.begin+', str(?startOffset / 1000), 's') AS ?begin ) .
+			} .
+			
+			OPTIONAL {				
+				?interaction nsl:clipBegin ?clipBegin ;
+							 nsl:clipEnd ?clipEnd .
+				BIND( xsd:long(?clipEnd - ?clipBegin) AS ?duration ) .
+				BIND( concat(f:formatUri(iri('%1$s')), '.begin+', str(?clipBegin / 1000), 's') AS ?begin ) .
+			} .
+			
+			FILTER(BOUND(?begin) && BOUND(?duration)) .
+			
+			OPTIONAL {
+				?interaction nsl:imgUrl ?imgUrl .
+			} .
+						
+		}
+	} .
+
+	##
+	# This part is specific to A Golden Age
+	# - transforms trigger regions to interactions 
+	##
+	#OPTIONAL { 
+	#	SELECT ?name ?clipBegin ?clipEnd 
+	#	WHERE {
+	#		<%1$s>  nsl:hasTemporalAnnotation ?ta .
+	#			?ta nsl:type "trigger_region"^^xsd:string ;
+	#				nsl:beginTime ?clipBegin ;
+	#				nsl:endTime ?clipEnd ;
+	#				nsl:name ?name .
+	#				FILTER regex(?name, "keyword") 
+	#	}
+	#} .
+	
+	##
+	# This part is specific to MyVideos
+	# - attaches a keyword(Person) interaction to any clip that is annotated with Audio 
+	##
+
+	#OPTIONAL {
+	#	SELECT ?name ?clipBegin ?clipEnd 
+	#	WHERE {
+	#		<%1$s>  nsl:contains [ rdfs:label "Audio" ] ;
+	#				nsl:hasRelativeIn ?rin ;
+	#				nsl:hasRelativeOut ?rout . 
+	#				#FILTER( !BOUND(?clipBegin) && !BOUND(?clipEnd) && !BOUND(?name) ) .
+	#				FILTER( ?rout - ?rin > 10000 ) .
+	#				BIND( (?rout - ?rin - 10000) AS ?clipEnd ) .
+	#				BIND( 0 AS ?clipBegin ). BIND( "keyword(Person)" AS ?name ) 
+	#	}
+	#}.
+}

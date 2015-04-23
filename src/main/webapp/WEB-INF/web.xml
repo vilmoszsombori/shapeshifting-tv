@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="shapeshifting-tv" version="3.0">
+	<display-name>ShapeShifting TV NSL engine</display-name>
+	<description>ShapeShifting TV NSL engine</description>
+	<servlet>
+		<servlet-name>Query dispatcher</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.QueryDispatcher</servlet-class>
+		<init-param>
+			<param-name>resources</param-name>
+			<param-value>./webapps/ShapeShift/rs/</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Query dispatcher</servlet-name>
+		<url-pattern>/query</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Playlist dispatcher</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.PlaylistDispatcher</servlet-class>
+		<init-param>
+			<param-name>resources</param-name>
+			<param-value>./webapps/ShapeShift/rs/</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Playlist dispatcher</servlet-name>
+		<url-pattern>/playlist</url-pattern>
+	</servlet-mapping>
+
+	<!-- 
+	<servlet>
+		<servlet-name>Interaction dispatcher</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.InteractionDispatcher</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Interaction dispatcher</servlet-name>
+		<url-pattern>/interaction</url-pattern>
+	</servlet-mapping>
+	-->
+
+	<servlet>
+		<servlet-name>Logger</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.Logger</servlet-class>
+		<init-param>
+			<param-name>log4j-init-file</param-name>
+			<param-value>WEB-INF/classes/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Logger</servlet-name>
+		<url-pattern>/logger</url-pattern>
+	</servlet-mapping>
+
+	<!-- 
+	<servlet>
+		<servlet-name>Engine dispatcher</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.EngineDispatcher</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Engine dispatcher</servlet-name>
+		<url-pattern>/engine</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Error dispatcher</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.Error</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Error dispatcher</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Test servlet</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.test.Test</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Test servlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+	-->
+	
+	<!-- mxGraph servlets -->
+	
+	<servlet>
+		<servlet-name>mxGraph OpenServlet</servlet-name>
+		<servlet-class>tv.shapeshifting.tools.web.OpenServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mxGraph OpenServlet</servlet-name>
+		<url-pattern>/open</url-pattern>	
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mxGraph SaveServlet</servlet-name>
+		<servlet-class>tv.shapeshifting.tools.web.SaveServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mxGraph SaveServlet</servlet-name>
+		<url-pattern>/save</url-pattern>	
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mxGraph Back-end Config</servlet-name>
+		<servlet-class>tv.shapeshifting.tools.web.Config</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mxGraph Back-end Config</servlet-name>
+		<url-pattern>/mxConfig</url-pattern>	
+	</servlet-mapping>	
+
+	<servlet>
+		<servlet-name>mxGraph Export</servlet-name>
+		<servlet-class>tv.shapeshifting.tools.web.Export</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mxGraph Export</servlet-name>
+		<url-pattern>/Export</url-pattern>	
+	</servlet-mapping>	
+
+	<servlet>
+		<servlet-name>mxGraph Share</servlet-name>
+		<servlet-class>tv.shapeshifting.tools.web.Share</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MediaServlet</display-name>
+		<servlet-name>MediaServlet</servlet-name>
+		<servlet-class>tv.shapeshifting.nsl.servlets.MediaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mxGraph Share</servlet-name>
+		<url-pattern>/Share</url-pattern>	
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MediaServlet</servlet-name>
+		<url-pattern>/media</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>DirectoryListing</servlet-name>
+		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>listings</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DirectoryListing</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>	
+	
+	<listener>
+		<description>sessionListener</description>
+		<listener-class>tv.shapeshifting.nsl.listeners.SessionListener</listener-class>
+	</listener>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>http://nsl.shapeshifting.tv/taglibs/engine</taglib-uri>
+			<taglib-location>/WEB-INF/tld/engine.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+</web-app>

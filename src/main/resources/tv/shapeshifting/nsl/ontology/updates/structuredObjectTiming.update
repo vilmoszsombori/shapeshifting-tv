@@ -1,0 +1,6 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+
+DELETE {  <%1$s> nsl:startsWith ?val }
+WHERE  { <%1$s> nsl:startsWith ?val } ;
+
+INSERT DATA {  <%1$s> nsl:startsWith <%2$s> }

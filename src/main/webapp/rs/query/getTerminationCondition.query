@@ -1,0 +1,12 @@
+PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX nsl: <java:tv.ShapeShift.nsl.filters.> 
+
+SELECT ?label ?tc
+WHERE 
+{
+	<%s> core:hasTerminationCondition ?tc ;
+		rdfs:label ?label .
+	#FILTER nsl:evaluate(?tc)
+}

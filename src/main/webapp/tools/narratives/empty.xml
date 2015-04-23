@@ -1,0 +1,10 @@
+<mxGraphModel>
+	<root>
+		<mxCell id="0"/>
+		<LinkStructure label="root">
+			<mxCell style="swimlane;horizontal=1;fillColor=#ff9999" parent="0" vertex="1">
+				<mxGeometry x="10" y="10" width="1120" height="340" as="geometry"/>
+			</mxCell>
+		</LinkStructure>
+	</root>
+</mxGraphModel>

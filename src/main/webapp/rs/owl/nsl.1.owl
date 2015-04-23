@@ -1,0 +1,1009 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY core "http://www.ist-nm2.org/ontology/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY production "http://www.ist-nm2.org/ontology/production#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.ist-nm2.org/ontology/core#"
+     xml:base="http://www.ist-nm2.org/ontology/core"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:core="http://www.ist-nm2.org/ontology/core#"
+     xmlns:production="http://www.ist-nm2.org/ontology/production#">
+    <owl:Ontology rdf:about="http://www.ist-nm2.org/ontology/core"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#contains -->
+
+    <owl:ObjectProperty rdf:about="&core;contains">
+        <rdfs:range rdf:resource="&core;LogicalEntity"/>
+        <rdfs:domain rdf:resource="&core;MediaItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#defines -->
+
+    <owl:ObjectProperty rdf:about="&core;defines">
+        <rdfs:domain rdf:resource="&core;LogicalEntity"/>
+        <rdfs:range rdf:resource="&core;LogicalEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasBinItem -->
+
+    <owl:ObjectProperty rdf:about="&core;hasBinItem">
+        <rdfs:domain rdf:resource="&core;BinStructure"/>
+        <rdfs:range rdf:resource="&core;NarrativeObject"/>
+        <rdfs:subPropertyOf rdf:resource="&core;hasNarrativeItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasChild -->
+
+    <owl:ObjectProperty rdf:about="&core;hasChild">
+        <rdfs:range rdf:resource="&core;MediaObject"/>
+        <rdfs:domain rdf:resource="&core;MediaObjectGroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasDestination -->
+
+    <owl:ObjectProperty rdf:about="&core;hasDestination">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&core;Link"/>
+        <rdfs:range rdf:resource="&core;LinkableItem"/>
+        <owl:inverseOf rdf:resource="&core;isDestinationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasLayer -->
+
+    <owl:ObjectProperty rdf:about="&core;hasLayer">
+        <rdfs:domain rdf:resource="&core;LayerStructure"/>
+        <rdfs:range rdf:resource="&core;NarrativeObject"/>
+        <rdfs:subPropertyOf rdf:resource="&core;hasNarrativeItem"/>
+        <owl:inverseOf rdf:resource="&core;isLayerOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasLeadingLayer -->
+
+    <owl:ObjectProperty rdf:about="&core;hasLeadingLayer">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&core;LayerStructure"/>
+        <rdfs:range rdf:resource="&core;NarrativeObject"/>
+        <rdfs:subPropertyOf rdf:resource="&core;hasLayer"/>
+        <owl:inverseOf rdf:resource="&core;isLeadingLayerOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasLinkStructureItem -->
+
+    <owl:ObjectProperty rdf:about="&core;hasLinkStructureItem">
+        <rdfs:domain rdf:resource="&core;LinkStructure"/>
+        <rdfs:subPropertyOf rdf:resource="&core;hasNarrativeItem"/>
+        <owl:inverseOf rdf:resource="&core;isLinkStructureItemOf"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;DecisionPoint"/>
+                    <rdf:Description rdf:about="&core;Link"/>
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasMediaContent -->
+
+    <owl:ObjectProperty rdf:about="&core;hasMediaContent">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&core;MediaContent"/>
+        <rdfs:domain rdf:resource="&core;MediaItem"/>
+        <owl:inverseOf rdf:resource="&core;isMediaContentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasNarrativeItem -->
+
+    <owl:ObjectProperty rdf:about="&core;hasNarrativeItem">
+        <rdfs:range rdf:resource="&core;NarrativeItem"/>
+        <rdfs:domain rdf:resource="&core;StructuredNarrativeObject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasNarrativeRoot -->
+
+    <owl:ObjectProperty rdf:about="&core;hasNarrativeRoot">
+        <rdfs:range rdf:resource="&core;NarrativeObject"/>
+        <rdfs:domain rdf:resource="&core;Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasRootGroup -->
+
+    <owl:ObjectProperty rdf:about="&core;hasRootGroup">
+        <rdfs:range rdf:resource="&core;MediaObjectGroup"/>
+        <rdfs:domain rdf:resource="&core;Project"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasSource -->
+
+    <owl:ObjectProperty rdf:about="&core;hasSource">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&core;Link"/>
+        <rdfs:range rdf:resource="&core;LinkableItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasStartItem -->
+
+    <owl:ObjectProperty rdf:about="&core;hasStartItem">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&core;LinkStructure"/>
+        <rdfs:subPropertyOf rdf:resource="&core;hasLinkStructureItem"/>
+        <owl:inverseOf rdf:resource="&core;isStartItemOf"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;DecisionPoint"/>
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasTemporalAnnotation -->
+
+    <owl:ObjectProperty rdf:about="&core;hasTemporalAnnotation">
+        <rdfs:domain rdf:resource="&core;MediaItem"/>
+        <rdfs:range rdf:resource="&core;TemporalAnnotation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasTextualAnnotation -->
+
+    <owl:ObjectProperty rdf:about="&core;hasTextualAnnotation">
+        <rdfs:range rdf:resource="&core;TextualAnnotation"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;MediaItem"/>
+                    <rdf:Description rdf:about="&core;NarrativeItem"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isBinItemOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isBinItemOf">
+        <rdfs:range rdf:resource="&core;BinStructure"/>
+        <rdfs:domain rdf:resource="&core;NarrativeObject"/>
+        <owl:inverseOf rdf:resource="&core;hasBinItem"/>
+        <rdfs:subPropertyOf rdf:resource="&core;isNarrativeItemOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isDestinationOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isDestinationOf">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="&core;Link"/>
+        <rdfs:domain rdf:resource="&core;LinkableItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isLayerOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isLayerOf">
+        <rdfs:range rdf:resource="&core;LayerStructure"/>
+        <rdfs:domain rdf:resource="&core;NarrativeObject"/>
+        <rdfs:subPropertyOf rdf:resource="&core;isNarrativeItemOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isLeadingLayerOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isLeadingLayerOf">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="&core;LayerStructure"/>
+        <rdfs:domain rdf:resource="&core;NarrativeObject"/>
+        <rdfs:subPropertyOf rdf:resource="&core;isLayerOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isLinkStructureItemOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isLinkStructureItemOf">
+        <rdfs:range rdf:resource="&core;LinkStructure"/>
+        <rdfs:subPropertyOf rdf:resource="&core;isNarrativeItemOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;DecisionPoint"/>
+                    <rdf:Description rdf:about="&core;Link"/>
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isMediaContentOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isMediaContentOf">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&core;MediaItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isNarrativeItemOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isNarrativeItemOf">
+        <rdfs:domain rdf:resource="&core;NarrativeItem"/>
+        <rdfs:range rdf:resource="&core;StructuredNarrativeObject"/>
+        <owl:inverseOf rdf:resource="&core;hasNarrativeItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isReferedBy -->
+
+    <owl:ObjectProperty rdf:about="&core;isReferedBy">
+        <rdfs:range rdf:resource="&core;AtomicNarrativeObject"/>
+        <rdfs:domain rdf:resource="&core;MediaItem"/>
+        <owl:inverseOf rdf:resource="&core;refersTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isSourceOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isSourceOf">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="&core;Link"/>
+        <rdfs:domain rdf:resource="&core;LinkableItem"/>
+        <owl:inverseOf rdf:resource="&core;hasSource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isStartItemOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isStartItemOf">
+        <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
+        <rdfs:range rdf:resource="&core;LinkStructure"/>
+        <rdfs:subPropertyOf rdf:resource="&core;isLinkStructureItemOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;DecisionPoint"/>
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isTemporalAnnotationOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isTemporalAnnotationOf">
+        <rdfs:range rdf:resource="&core;MediaItem"/>
+        <rdfs:domain rdf:resource="&core;TemporalAnnotation"/>
+        <owl:inverseOf rdf:resource="&core;hasTemporalAnnotation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#isTextualAnnotationOf -->
+
+    <owl:ObjectProperty rdf:about="&core;isTextualAnnotationOf">
+        <rdfs:domain rdf:resource="&core;TextualAnnotation"/>
+        <owl:inverseOf rdf:resource="&core;hasTextualAnnotation"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;MediaItem"/>
+                    <rdf:Description rdf:about="&core;NarrativeItem"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#refersTo -->
+
+    <owl:ObjectProperty rdf:about="&core;refersTo">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="&core;AtomicNarrativeObject"/>
+        <rdfs:range rdf:resource="&core;MediaItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#beginTime -->
+
+    <owl:DatatypeProperty rdf:about="&core;beginTime">
+        <rdfs:domain rdf:resource="&core;TemporalAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#endTime -->
+
+    <owl:DatatypeProperty rdf:about="&core;endTime">
+        <rdfs:domain rdf:resource="&core;TemporalAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasDuration -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasDuration">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasFile -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasFile">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasFps -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasFps">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasKeyframeDir -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasKeyframeDir">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasMpeg7File -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasMpeg7File">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#hasType -->
+
+    <owl:DatatypeProperty rdf:about="&core;hasType">
+        <rdfs:domain rdf:resource="&core;MediaContent"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#key -->
+
+    <owl:DatatypeProperty rdf:about="&core;key">
+        <rdfs:domain rdf:resource="&core;TextualAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#name -->
+
+    <owl:DatatypeProperty rdf:about="&core;name">
+        <rdfs:domain rdf:resource="&core;TemporalAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#type -->
+
+    <owl:DatatypeProperty rdf:about="&core;type">
+        <rdfs:domain rdf:resource="&core;TemporalAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#value -->
+
+    <owl:DatatypeProperty rdf:about="&core;value">
+        <rdfs:domain rdf:resource="&core;TextualAnnotation"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#Action -->
+
+    <owl:Class rdf:about="&core;Action">
+        <rdfs:label rdf:datatype="&xsd;string">Action</rdfs:label>
+        <rdfs:label></rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;LogicalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#AtomicNarrativeObject -->
+
+    <owl:Class rdf:about="&core;AtomicNarrativeObject">
+        <rdfs:label rdf:datatype="&xsd;string">AtomicNarrativeObject</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;refersTo"/>
+                        <owl:onClass rdf:resource="&core;MediaItem"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;ImplicitObject"/>
+        <owl:disjointWith rdf:resource="&core;JumpObject"/>
+        <owl:disjointWith rdf:resource="&core;StructuredNarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#BinStructure -->
+
+    <owl:Class rdf:about="&core;BinStructure">
+        <rdfs:label rdf:datatype="&xsd;string">BinStructure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;StructuredNarrativeObject"/>
+        <owl:disjointWith rdf:resource="&core;LayerStructure"/>
+        <owl:disjointWith rdf:resource="&core;LinkStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#DecisionPoint -->
+
+    <owl:Class rdf:about="&core;DecisionPoint">
+        <rdfs:label rdf:datatype="&xsd;string">DecisionPoint</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;NarrativeItem"/>
+        <owl:disjointWith rdf:resource="&core;Link"/>
+        <owl:disjointWith rdf:resource="&core;NarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#ImplicitObject -->
+
+    <owl:Class rdf:about="&core;ImplicitObject">
+        <rdfs:label rdf:datatype="&xsd;string">ImplicitObject</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;NarrativeObject"/>
+        <owl:disjointWith rdf:resource="&core;JumpObject"/>
+        <owl:disjointWith rdf:resource="&core;StructuredNarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#JumpObject -->
+
+    <owl:Class rdf:about="&core;JumpObject">
+        <rdfs:subClassOf rdf:resource="&core;NarrativeObject"/>
+        <owl:disjointWith rdf:resource="&core;StructuredNarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#LayerStructure -->
+
+    <owl:Class rdf:about="&core;LayerStructure">
+        <rdfs:label rdf:datatype="&xsd;string">LayerStructure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;StructuredNarrativeObject"/>
+        <owl:disjointWith rdf:resource="&core;LinkStructure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#Link -->
+
+    <owl:Class rdf:about="&core;Link">
+        <rdfs:label rdf:datatype="&xsd;string">Link</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;NarrativeItem"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&core;hasDestination"/>
+                                <owl:onClass rdf:resource="&core;LinkableItem"/>
+                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&core;hasSource"/>
+                                <owl:onClass rdf:resource="&core;LinkableItem"/>
+                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&core;isLinkStructureItemOf"/>
+                                <owl:onClass rdf:resource="&core;LinkStructure"/>
+                                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;LinkableItem"/>
+        <owl:disjointWith rdf:resource="&core;NarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#LinkStructure -->
+
+    <owl:Class rdf:about="&core;LinkStructure">
+        <rdfs:label rdf:datatype="&xsd;string">LinkStructure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;StructuredNarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#LinkableItem -->
+
+    <owl:Class rdf:about="&core;LinkableItem">
+        <rdfs:label rdf:datatype="&xsd;string">LinkableItem</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;DecisionPoint"/>
+                    <rdf:Description rdf:about="&core;NarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&core;NarrativeItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#LogicalEntity -->
+
+    <owl:Class rdf:about="&core;LogicalEntity">
+        <rdfs:label rdf:datatype="&xsd;string">LogicalEntity</rdfs:label>
+        <owl:disjointWith rdf:resource="&core;MediaContent"/>
+        <owl:disjointWith rdf:resource="&core;MediaObject"/>
+        <owl:disjointWith rdf:resource="&core;NarrativeItem"/>
+        <owl:disjointWith rdf:resource="&core;Project"/>
+        <owl:disjointWith rdf:resource="&core;TemporalAnnotation"/>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#MediaContent -->
+
+    <owl:Class rdf:about="&core;MediaContent">
+        <rdfs:label>MediaContent</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;isMediaContentOf"/>
+                        <owl:allValuesFrom rdf:resource="&core;MediaItem"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasKeyframeDir"/>
+                        <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasMpeg7File"/>
+                        <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasDuration"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasFile"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasFps"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasType"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;MediaObject"/>
+        <owl:disjointWith rdf:resource="&core;NarrativeItem"/>
+        <owl:disjointWith rdf:resource="&core;Project"/>
+        <owl:disjointWith rdf:resource="&core;TemporalAnnotation"/>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#MediaItem -->
+
+    <owl:Class rdf:about="&core;MediaItem">
+        <rdfs:label rdf:datatype="&xsd;string">MediaItem</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;MediaObject"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasTemporalAnnotation"/>
+                        <owl:allValuesFrom rdf:resource="&core;TemporalAnnotation"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasTextualAnnotation"/>
+                        <owl:allValuesFrom rdf:resource="&core;TextualAnnotation"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;hasMediaContent"/>
+                        <owl:onClass rdf:resource="&core;MediaContent"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;MediaObjectGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#MediaObject -->
+
+    <owl:Class rdf:about="&core;MediaObject">
+        <rdfs:label rdf:datatype="&xsd;string">MediaObject</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;MediaItem"/>
+                    <rdf:Description rdf:about="&core;MediaObjectGroup"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;NarrativeItem"/>
+        <owl:disjointWith rdf:resource="&core;Project"/>
+        <owl:disjointWith rdf:resource="&core;TemporalAnnotation"/>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#MediaObjectGroup -->
+
+    <owl:Class rdf:about="&core;MediaObjectGroup">
+        <rdfs:label rdf:datatype="&xsd;string">MediaObjectGroup</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;MediaObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&core;hasChild"/>
+                <owl:allValuesFrom rdf:resource="&core;MediaObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#NarrativeItem -->
+
+    <owl:Class rdf:about="&core;NarrativeItem">
+        <rdfs:label rdf:datatype="&xsd;string">NarrativeItem</rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&core;hasTextualAnnotation"/>
+                <owl:allValuesFrom rdf:resource="&core;TextualAnnotation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&core;Project"/>
+        <owl:disjointWith rdf:resource="&core;TemporalAnnotation"/>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#NarrativeObject -->
+
+    <owl:Class rdf:about="&core;NarrativeObject">
+        <rdfs:label rdf:datatype="&xsd;string">NarrativeObject</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;AtomicNarrativeObject"/>
+                    <rdf:Description rdf:about="&core;ImplicitObject"/>
+                    <rdf:Description rdf:about="&core;JumpObject"/>
+                    <rdf:Description rdf:about="&core;StructuredNarrativeObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&core;NarrativeItem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#Project -->
+
+    <owl:Class rdf:about="&core;Project">
+        <rdfs:label rdf:datatype="&xsd;string">Project</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&owl;Thing"/>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&core;hasNarrativeRoot"/>
+                                <owl:someValuesFrom rdf:resource="&core;NarrativeObject"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&core;hasRootGroup"/>
+                                <owl:someValuesFrom rdf:resource="&core;MediaObjectGroup"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;TemporalAnnotation"/>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#StructuredNarrativeObject -->
+
+    <owl:Class rdf:about="&core;StructuredNarrativeObject">
+        <rdfs:label rdf:datatype="&xsd;string">StructuredNarrativeObject</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&core;BinStructure"/>
+                    <rdf:Description rdf:about="&core;LayerStructure"/>
+                    <rdf:Description rdf:about="&core;LinkStructure"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&core;NarrativeObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#Subject -->
+
+    <owl:Class rdf:about="&core;Subject">
+        <rdfs:label rdf:datatype="&xsd;string">Subject</rdfs:label>
+        <rdfs:label>subject</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;LogicalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#TemporalAnnotation -->
+
+    <owl:Class rdf:about="&core;TemporalAnnotation">
+        <rdfs:label rdf:datatype="&xsd;string">TemporalAnnotation</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&owl;Thing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;isTemporalAnnotationOf"/>
+                        <owl:onClass rdf:resource="&core;MediaItem"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;beginTime"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;endTime"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;name"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;type"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="&core;TextualAnnotation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#TextualAnnotation -->
+
+    <owl:Class rdf:about="&core;TextualAnnotation">
+        <rdfs:label rdf:datatype="&xsd;string">TextualAnnotation</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&owl;Thing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;isTextualAnnotationOf"/>
+                        <owl:onClass>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="&core;MediaObject"/>
+                                    <rdf:Description rdf:about="&core;NarrativeItem"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:onClass>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;key"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&core;value"/>
+                        <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/core#Time -->
+
+    <owl:Class rdf:about="&core;Time">
+        <rdfs:label rdf:datatype="&xsd;string">Time</rdfs:label>
+        <rdfs:label>length</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;LogicalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID74a9de0d6cba4db0b6506b43a78fd795 -->
+
+    <owl:Class rdf:about="&production;ID74a9de0d6cba4db0b6506b43a78fd795">
+        <rdfs:label>At End</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#ID7d9c0c47f5d8472ba51d2258a6605236 -->
+
+    <owl:Class rdf:about="&production;ID7d9c0c47f5d8472ba51d2258a6605236">
+        <rdfs:label>level</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;LogicalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDa842f338cf7c44538e4677a7f6f0a49f -->
+
+    <owl:Class rdf:about="&production;IDa842f338cf7c44538e4677a7f6f0a49f">
+        <rdfs:label>At Start</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ist-nm2.org/ontology/production#IDbf33264b548a47bca80070ddc1cb16a2 -->
+
+    <owl:Class rdf:about="&production;IDbf33264b548a47bca80070ddc1cb16a2">
+        <rdfs:label>timeline</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&core;LogicalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.0.0.1469) http://owlapi.sourceforge.net -->
+

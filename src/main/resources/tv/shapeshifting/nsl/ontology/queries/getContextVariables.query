@@ -1,0 +1,9 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?contextVariable ?label ?value
+WHERE { 
+    ?contextVariable a nsl:ContextVariable ;
+    	rdfs:label ?label ;
+    	nsl:hasValue ?value 
+} 

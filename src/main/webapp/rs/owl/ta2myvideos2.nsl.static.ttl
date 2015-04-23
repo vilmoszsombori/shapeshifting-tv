@@ -1,0 +1,427 @@
+@prefix production: <http://www.ist-nm2.org/ontology/production#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix : <http://www.ist-nm2.org/ontology/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix core: <http://www.ist-nm2.org/ontology/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.ist-nm2.org/ontology/production> .
+
+<http://www.ist-nm2.org/ontology/production> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.ist-nm2.org/ontology/core#theProject
+
+:theProject rdf:type :Project ,
+                     owl:NamedIndividual ;
+            
+            :hasNarrativeRoot production:IDfd59d84cc6554380a665d84270c159a1 .
+
+
+
+###  http://www.ist-nm2.org/ontology/production#IDfd59d84cc6554380a665d84270c159a1
+
+production:IDfd59d84cc6554380a665d84270c159a1 rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "root" ;
+                                              
+                                              :hasLinkStructureItem production:ID70343dcc1c2a4c8f8763addd7270a6dd ;
+                                              
+                                              :hasStartItem production:ID70343dcc1c2a4c8f8763addd7270a6dd .
+                                              
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID0bad82d9d9ca456fb2f99ceb22dcd06f
+
+production:ID0bad82d9d9ca456fb2f99ceb22dcd06f rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "VideoLayer" ;
+                                                                                            
+                                              :hasLinkStructureItem production:ID657ad620205941ed93d87591b67277ea ,
+                                                                    production:ID7e761446126d4ca29691af1c3fe090e0 ,
+                                                                    production:IDc443395ce5a64b14973eba55a554631e ;
+                                              
+                                              :hasStartItem production:IDc443395ce5a64b14973eba55a554631e ;
+                                                                                            
+                                              :isLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e .
+
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID240b3b62fcca4ba6909151fece1ffa21
+
+production:ID240b3b62fcca4ba6909151fece1ffa21 rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "AudioLayer" ;
+                                                                                            
+                                              :hasStartItem production:ID24acab509b4c4530ba98ef65586679a2 ;
+                                              
+                                              :hasLinkStructureItem production:ID24acab509b4c4530ba98ef65586679a2 ;
+                                              
+                                              :isLeadingLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e ;
+                                              
+                                              :isLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e .
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID24acab509b4c4530ba98ef65586679a2
+
+production:ID24acab509b4c4530ba98ef65586679a2 rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "AudioBin" ;
+                                              
+                                              :isLinkStructureItemOf production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :isStartItemOf production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :hasExpression """select( 'MediaType' = 'Audio' )""" ;
+                                              
+                                              :hasSelectionRule """sparql(
+                                              		PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+											
+													SELECT ?binItem ?ml ?rin ?rout
+													WHERE {
+														{
+															SELECT (MIN( ?moRin ) AS ?m)
+															WHERE { 
+																?cv a core:ContextVariable ; 
+																	rdfs:label "Song" ; 
+																	core:hasValue ?s .
+																
+																?song a production:Song ; 
+																	rdfs:label ?l ; 
+																	core:hasRelativeIn ?rin ; 
+																	core:hasRelativeOut ?rout . 
+																FILTER regex(?l, ?s, "i") .
+																
+																?mo a core:MediaObject ; 
+																	core:hasMediaContent [ core:hasType "audio" ] ; 
+																	core:hasRelativeIn ?moRin . 
+																FILTER( ?rin <= ?moRin && ?moRin < ?rout ) .
+																OPTIONAL { ?mo core:hasBeenProcessed ?processed } .
+																FILTER(!BOUND(?processed)) .
+															}
+														} .
+														?binItem a core:MediaObject ; 
+															core:hasMediaContent [ core:hasType "audio" ] ; 
+															core:hasRelativeIn ?rin ; 
+															core:hasRelativeOut ?rout ; 
+															rdfs:label ?ml . 
+														FILTER( ?rin = ?m ) .
+													})""" .
+                                              
+                                              
+
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID657ad620205941ed93d87591b67277ea
+
+production:ID657ad620205941ed93d87591b67277ea rdf:type :Link ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "Should there be more videos?" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+
+                                              :hasSource production:IDc443395ce5a64b14973eba55a554631e ;
+                                                                                            
+                                              :hasDestination production:ID7e761446126d4ca29691af1c3fe090e0 ;
+                                                                                            
+                                              :hasLinkCondition """sparql(
+													PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													ASK {
+														{ 
+															SELECT ?rOutVideo
+															WHERE { 
+																?video	core:hasBeenProcessed ?tsVideo ;
+																		core:contains [ rdfs:label "Video" ] ;
+																		core:hasRelativeOut ?rOutVideo .
+																{
+																	SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+																	WHERE { 
+																		?iVideo core:hasBeenProcessed ?tsV ; 
+																				core:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?tsVideo = ?maxTsVideo ) 
+															}
+														} .
+													
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	core:hasBeenProcessed ?tsAudio ;
+																		core:contains [ rdfs:label "Audio" ] ;
+																		core:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio core:hasBeenProcessed ?tsA ; 
+																			core:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rOutVideo < ?rOutAudio )
+													})""" .
+                                              
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID70343dcc1c2a4c8f8763addd7270a6dd
+
+production:ID70343dcc1c2a4c8f8763addd7270a6dd rdf:type :BinStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "ConcertBin" ;
+                                                                                                                                                                                        
+                                              :hasBinItem production:IDd455aa2badec4e2c8e55bf1fe4c12c7e ;
+                                              
+                                              :isLinkStructureItemOf production:IDfd59d84cc6554380a665d84270c159a1 ;
+                                              
+                                              :hasTerminationCondition """sparql(
+													PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+													
+													ASK {
+														?contextVar rdfs:label "Song" ; 
+															core:hasValue ?songValue .
+															
+														?song rdf:type production:Song ; 
+															rdfs:label ?songLabel ; 
+															core:hasRelativeIn ?srin ; 
+															core:hasRelativeOut ?srout . 
+														FILTER regex(?songLabel, ?songValue, "i") .
+														
+														{
+															SELECT (MAX(?t) AS ?maxT)
+															WHERE { 
+																?mo core:hasBeenProcessed ?t ; 
+																	core:hasMediaContent [ core:hasType "audio" ] 
+															}
+														} .
+														
+														?mo core:hasBeenProcessed ?t ; 
+															core:hasMediaContent [ core:hasType "audio" ] ; 
+															rdfs:label ?l ; 
+															core:hasRelativeIn ?rin ; 
+															core:hasRelativeOut ?rout .
+														FILTER( ?t = ?maxT && ?rout < ?srout ) .
+													})""" .
+                                              
+
+
+
+
+
+###  http://www.ist-nm2.org/ontology/production#ID7e761446126d4ca29691af1c3fe090e0
+
+production:ID7e761446126d4ca29691af1c3fe090e0 rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "RemainingVideos" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                              
+                                              :isDestinationOf production:ID657ad620205941ed93d87591b67277ea ;
+                                              
+                                              :hasSelectType :SelectAlternatives ;
+                                              
+                                              :hasSelectionRule """sparql(
+													PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem
+													WHERE 
+													{
+														{ 
+															SELECT ?rout
+															WHERE { 
+																?video	core:hasBeenProcessed ?timestamp ;
+																		core:contains [ rdfs:label "Video" ] ;
+																		core:hasRelativeOut ?rout .
+																{
+																	SELECT ( MAX(?ts) AS ?maxTimestamp ) 
+																	WHERE { 
+																		?iVideo core:hasBeenProcessed ?ts ; 
+																				core:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?timestamp = ?maxTimestamp ) 
+															}
+														} .
+														
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	core:hasBeenProcessed ?tsAudio ;
+																		core:contains [ rdfs:label "Audio" ] ;
+																		core:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio core:hasBeenProcessed ?tsA ; 
+																			core:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rout < ?rOutAudio ) .
+																												
+														?binItem core:hasRelativeIn ?rout ; core:contains [ rdfs:label "Video" ] .
+																												
+														OPTIONAL { ?binItem core:hasBeenProcessed ?processed } .
+														FILTER( !BOUND(?processed) ) .
+													} 
+													ORDER BY RAND()
+													LIMIT 3)""" ;
+                                              
+                                              
+                                              :hasTerminationCondition """sparql(
+													PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													ASK {
+														{ 
+															SELECT ?rOutVideo
+															WHERE { 
+																?video	core:hasBeenProcessed ?tsVideo ;
+																		core:contains [ rdfs:label "Video" ] ;
+																		core:hasRelativeOut ?rOutVideo .
+																{
+																	SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+																	WHERE { 
+																		?iVideo core:hasBeenProcessed ?tsV ; 
+																				core:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?tsVideo = ?maxTsVideo ) 
+															}
+														} .
+													
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	core:hasBeenProcessed ?tsAudio ;
+																		core:contains [ rdfs:label "Audio" ] ;
+																		core:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio core:hasBeenProcessed ?tsA ; 
+																			core:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rOutVideo < ?rOutAudio )
+													})""" .
+                                              
+
+
+
+###  http://www.ist-nm2.org/ontology/production#IDc443395ce5a64b14973eba55a554631e
+
+production:IDc443395ce5a64b14973eba55a554631e rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "FirstVideo" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                              
+                                              :isStartItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                                                                            
+                                              :isSourceOf production:ID657ad620205941ed93d87591b67277ea ;
+                                              
+                                              :hasSelectionRule """sparql(
+													PREFIX core: <http://www.ist-nm2.org/ontology/core#>
+													PREFIX production: <http://www.ist-nm2.org/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem
+													WHERE {
+														{ 	SELECT ?audio ?aRin
+															WHERE { 
+																?audio core:hasBeenProcessed ?tsAudio ; 
+																		core:contains [ rdfs:label "Audio" ] ;
+																		core:hasRelativeIn ?aRin ;
+																	
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio core:hasBeenProcessed ?tsA ; 
+																			core:contains [ rdfs:label "Audio"] 
+																	} 
+																} . 
+																FILTER( ?tsAudio = ?maxTsAudio ) 			 
+															}		
+														} .
+
+														?binItem core:hasRelativeIn ?aRin ;
+																core:contains [ rdfs:label "Video"].
+
+														#?binItem core:alignsWith ?audio .
+														#<%1$s> core:hasBinItem|core:hasImplicitContent ?binItem .	
+
+														OPTIONAL { ?binItem core:hasBeenProcessed ?processed } .
+														FILTER(!BOUND(?processed)) .
+													})""" .
+                                              
+
+
+
+
+###  http://www.ist-nm2.org/ontology/production#IDd455aa2badec4e2c8e55bf1fe4c12c7e
+
+production:IDd455aa2badec4e2c8e55bf1fe4c12c7e rdf:type :LayerStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "ConcertLayers" ;
+                                              
+                                              :hasLayer production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ,
+                                              			production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :hasLeadingLayer production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                                                                                                                         
+                                              :isBinItemOf production:ID70343dcc1c2a4c8f8763addd7270a6dd .
+                                              
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+

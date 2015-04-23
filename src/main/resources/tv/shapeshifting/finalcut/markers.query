@@ -1,0 +1,13 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+SELECT ?label ?time
+WHERE {
+	?marker rdf:type production:Marker ;
+		rdfs:label ?label ;
+		nsl:hasRelativeIn ?time .
+	FILTER( ! regex(?label, "randomcut", "i") ) .
+}
+ORDER BY ?time

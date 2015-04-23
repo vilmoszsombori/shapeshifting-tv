@@ -1,0 +1,62 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX production: <http://shapeshifting.tv/ontology/production#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX f: <java:tv.shapeshifting.nsl.functions.> 
+
+CONSTRUCT { 
+	?temporalAnnotation rdf:type nsl:TemporalAnnotation , owl:NamedIndividual ;
+		nsl:type "core.inOutTime" ;
+		nsl:beginTime ?contentIn ;
+		nsl:endTime ?contentOut ;
+		nsl:name "" .	
+		
+	?mediaItem rdf:type nsl:MediaItem , owl:NamedIndividual ;
+		rdfs:label ?name ;
+		nsl:hasMediaContent ?content ;
+		nsl:hasTemporalAnnotation ?temporalAnnotation ;
+		nsl:hasRelativeIn ?markerIn ; 
+		nsl:hasRelativeOut ?markerOut ;
+		nsl:contains ?type .
+
+} WHERE {
+	{
+		SELECT ?content ?markerIn ( MIN(?temp) AS ?markerOut )
+		WHERE { 
+			?content rdf:type nsl:MediaContent ;
+				nsl:hasType ?contentType ;
+				nsl:hasRelativeIn ?rin ; 
+				nsl:hasRelativeOut ?rout .
+		
+			?marker1 rdf:type production:Marker ;
+				rdfs:label ?label1 ;
+				nsl:hasRelativeIn ?markerIn .
+			FILTER( ?rin <= ?markerIn && ?markerIn < ?rout ) .
+			FILTER( regex( ?contentType, "video", "i" ) || ( regex( ?contentType, "audio", "i" ) && ! regex( ?label1, "randomcut", "i" ) ) ) .
+			
+			?marker2 rdf:type production:Marker ;
+				rdfs:label ?label2 ;
+				nsl:hasRelativeIn ?temp .
+			FILTER( ?markerIn < ?temp && ?rout >= ?temp ) .
+			FILTER( regex( ?contentType, "video", "i" ) || ( regex( ?contentType, "audio", "i" ) && ! regex( ?label2, "randomcut", "i" ) ) ) .
+		}
+		GROUP BY ?content ?markerIn
+		ORDER BY ?markerIn
+	} .
+
+	?content rdfs:label ?label ;
+		nsl:hasRelativeIn ?rin ; 
+		nsl:hasRelativeOut ?rout ;
+		nsl:hasType ?contentType .
+			
+	BIND( concat(?label, '_', str(?markerIn)) AS ?name ) .
+	BIND( xsd:long(?markerIn - ?rin) AS ?contentIn ) .
+	BIND( xsd:long(?markerOut - ?rin) AS ?contentOut ) .	
+	BIND( iri(concat('production:', f:uuid())) AS ?mediaItem ) .
+	BIND( iri(concat('production:', f:uuid())) AS ?temporalAnnotation ) .
+	
+	?type rdfs:label ?itemType FILTER regex(?itemType, ?contentType, "i") .	
+}
+

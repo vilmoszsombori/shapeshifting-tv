@@ -1,0 +1,434 @@
+#################################################################
+#
+#    MyVideos 2.0 Authoring and Editing
+#
+#################################################################
+
+@prefix : <http://shapeshifting.tv/ontology/nsl#> .
+@prefix nsl: <http://shapeshifting.tv/ontology/nsl#> .
+@prefix production: <http://shapeshifting.tv/ontology/production#> .
+
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@base <http://shapeshifting.tv/ontology/production> .
+<http://shapeshifting.tv/ontology/production> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://shapeshifting.tv/ontology/nsl#theProject
+
+:theProject rdf:type :Project ,
+                     owl:NamedIndividual ;
+            
+            :hasNarrativeRoot production:IDfd59d84cc6554380a665d84270c159a1 .
+
+
+
+###  http://shapeshifting.tv/ontology/production#IDfd59d84cc6554380a665d84270c159a1
+
+production:IDfd59d84cc6554380a665d84270c159a1 rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "root" ;
+                                              
+                                              :hasLinkStructureItem production:ID70343dcc1c2a4c8f8763addd7270a6dd ;
+                                              
+                                              :hasStartItem production:ID70343dcc1c2a4c8f8763addd7270a6dd .
+                                              
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID0bad82d9d9ca456fb2f99ceb22dcd06f
+
+production:ID0bad82d9d9ca456fb2f99ceb22dcd06f rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "VideoLayer" ;
+                                                                                            
+                                              :hasLinkStructureItem production:ID657ad620205941ed93d87591b67277ea ,
+                                                                    production:ID7e761446126d4ca29691af1c3fe090e0 ,
+                                                                    production:IDc443395ce5a64b14973eba55a554631e ;
+                                              
+                                              :hasStartItem production:IDc443395ce5a64b14973eba55a554631e ;
+                                                                                            
+                                              :isLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e .
+
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID240b3b62fcca4ba6909151fece1ffa21
+
+production:ID240b3b62fcca4ba6909151fece1ffa21 rdf:type :LinkStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "AudioLayer" ;
+                                                                                            
+                                              :hasStartItem production:ID24acab509b4c4530ba98ef65586679a2 ;
+                                              
+                                              :hasLinkStructureItem production:ID24acab509b4c4530ba98ef65586679a2 ;
+                                              
+                                              :isLeadingLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e ;
+                                              
+                                              :isLayerOf production:IDd455aa2badec4e2c8e55bf1fe4c12c7e .
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID24acab509b4c4530ba98ef65586679a2
+
+production:ID24acab509b4c4530ba98ef65586679a2 rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "AudioBin" ;
+                                              
+                                              :isLinkStructureItemOf production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :isStartItemOf production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :hasExpression """select( 'MediaType' = 'Audio' )""" ;
+                                              
+                                              :hasSelectionRule """sparql(
+                                              		PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+											
+													SELECT ?binItem ?ml ?rin ?rout
+													WHERE {
+														{
+															SELECT (MIN( ?moRin ) AS ?m)
+															WHERE { 
+																?cv a nsl:ContextVariable ; 
+																	rdfs:label "Song" ; 
+																	nsl:hasValue ?s .
+																
+																?song a production:Song ; 
+																	rdfs:label ?l ; 
+																	nsl:hasRelativeIn ?rin ; 
+																	nsl:hasRelativeOut ?rout . 
+																FILTER regex(?l, ?s, "i") .
+																
+																?mo a nsl:MediaObject ; 
+																	nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+																	nsl:hasRelativeIn ?moRin . 
+																FILTER( ?rin <= ?moRin && ?moRin < ?rout ) .
+																OPTIONAL { ?mo nsl:hasBeenProcessed ?processed } .
+																FILTER(!BOUND(?processed)) .
+															}
+														} .
+														?binItem a nsl:MediaObject ; 
+															nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+															nsl:hasRelativeIn ?rin ; 
+															nsl:hasRelativeOut ?rout ; 
+															rdfs:label ?ml . 
+														FILTER( ?rin = ?m ) .
+													})""" .
+                                              
+                                              
+
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID657ad620205941ed93d87591b67277ea
+
+production:ID657ad620205941ed93d87591b67277ea rdf:type :Link ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "Should there be more videos?" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+
+                                              :hasSource production:IDc443395ce5a64b14973eba55a554631e ;
+                                                                                            
+                                              :hasDestination production:ID7e761446126d4ca29691af1c3fe090e0 ;
+                                                                                            
+                                              :hasLinkCondition """sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													ASK {
+														{ 
+															SELECT ?rOutVideo
+															WHERE { 
+																?video	nsl:hasBeenProcessed ?tsVideo ;
+																		nsl:contains [ rdfs:label "Video" ] ;
+																		nsl:hasRelativeOut ?rOutVideo .
+																{
+																	SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+																	WHERE { 
+																		?iVideo nsl:hasBeenProcessed ?tsV ; 
+																				nsl:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?tsVideo = ?maxTsVideo ) 
+															}
+														} .
+													
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	nsl:hasBeenProcessed ?tsAudio ;
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rOutVideo < ?rOutAudio )
+													})""" .
+                                              
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID70343dcc1c2a4c8f8763addd7270a6dd
+
+production:ID70343dcc1c2a4c8f8763addd7270a6dd rdf:type :BinStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "ConcertBin" ;
+                                                                                                                                                                                        
+                                              :hasBinItem production:IDd455aa2badec4e2c8e55bf1fe4c12c7e ;
+                                              
+                                              :isLinkStructureItemOf production:IDfd59d84cc6554380a665d84270c159a1 ;
+                                              
+                                              :hasTerminationCondition """sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+													
+													ASK {
+														?contextVar rdfs:label "Song" ; 
+															nsl:hasValue ?songValue .
+															
+														?song rdf:type production:Song ; 
+															rdfs:label ?songLabel ; 
+															nsl:hasRelativeIn ?srin ; 
+															nsl:hasRelativeOut ?srout . 
+														FILTER regex(?songLabel, ?songValue, "i") .
+														
+														{
+															SELECT (MAX(?t) AS ?maxT)
+															WHERE { 
+																?mo nsl:hasBeenProcessed ?t ; 
+																	nsl:hasMediaContent [ nsl:hasType "audio" ] 
+															}
+														} .
+														
+														?mo nsl:hasBeenProcessed ?t ; 
+															nsl:hasMediaContent [ nsl:hasType "audio" ] ; 
+															rdfs:label ?l ; 
+															nsl:hasRelativeIn ?rin ; 
+															nsl:hasRelativeOut ?rout .
+														FILTER( ?t = ?maxT && ?rout < ?srout ) .
+													})""" .
+                                              
+
+
+
+
+
+###  http://shapeshifting.tv/ontology/production#ID7e761446126d4ca29691af1c3fe090e0
+
+production:ID7e761446126d4ca29691af1c3fe090e0 rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "RemainingVideos" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                              
+                                              :isDestinationOf production:ID657ad620205941ed93d87591b67277ea ;
+                                              
+                                              :hasSelectType :SelectAlternatives ;
+                                              
+                                              :hasSelectionRule """sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem
+													WHERE 
+													{
+														{ 
+															SELECT ?rout
+															WHERE { 
+																?video	nsl:hasBeenProcessed ?timestamp ;
+																		nsl:contains [ rdfs:label "Video" ] ;
+																		nsl:hasRelativeOut ?rout .
+																{
+																	SELECT ( MAX(?ts) AS ?maxTimestamp ) 
+																	WHERE { 
+																		?iVideo nsl:hasBeenProcessed ?ts ; 
+																				nsl:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?timestamp = ?maxTimestamp ) 
+															}
+														} .
+														
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	nsl:hasBeenProcessed ?tsAudio ;
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rout < ?rOutAudio ) .
+																												
+														?binItem nsl:hasRelativeIn ?rout ; nsl:contains [ rdfs:label "Video" ] .
+																												
+														OPTIONAL { ?binItem nsl:hasBeenProcessed ?processed } .
+														FILTER( !BOUND(?processed) ) .
+													} 
+													ORDER BY RAND()
+													LIMIT 3)""" ;
+                                              
+                                              
+                                              :hasTerminationCondition """sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													ASK {
+														{ 
+															SELECT ?rOutVideo
+															WHERE { 
+																?video	nsl:hasBeenProcessed ?tsVideo ;
+																		nsl:contains [ rdfs:label "Video" ] ;
+																		nsl:hasRelativeOut ?rOutVideo .
+																{
+																	SELECT ( MAX(?tsV) AS ?maxTsVideo ) 
+																	WHERE { 
+																		?iVideo nsl:hasBeenProcessed ?tsV ; 
+																				nsl:contains [ rdfs:label "Video"] 
+																	} 
+																} . FILTER( ?tsVideo = ?maxTsVideo ) 
+															}
+														} .
+													
+														{ 
+															SELECT ?rOutAudio
+															WHERE { 
+																?audio	nsl:hasBeenProcessed ?tsAudio ;
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeOut ?rOutAudio .
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . FILTER( ?tsAudio = ?maxTsAudio ) 
+															}
+														} .
+														
+														FILTER( ?rOutVideo < ?rOutAudio )
+													})""" .
+                                              
+
+
+
+###  http://shapeshifting.tv/ontology/production#IDc443395ce5a64b14973eba55a554631e
+
+production:IDc443395ce5a64b14973eba55a554631e rdf:type :ImplicitObject ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "FirstVideo" ;
+                                              
+                                              :isLinkStructureItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                              
+                                              :isStartItemOf production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ;
+                                                                                            
+                                              :isSourceOf production:ID657ad620205941ed93d87591b67277ea ;
+                                              
+                                              :hasSelectionRule """sparql(
+													PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+													PREFIX production: <http://shapeshifting.tv/ontology/production#>
+													PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+													PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+													PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+													
+													SELECT ?binItem
+													WHERE {
+														{ 	SELECT ?audio ?aRin
+															WHERE { 
+																?audio nsl:hasBeenProcessed ?tsAudio ; 
+																		nsl:contains [ rdfs:label "Audio" ] ;
+																		nsl:hasRelativeIn ?aRin ;
+																	
+																{
+																	SELECT ( MAX(?tsA) AS ?maxTsAudio ) 
+																	WHERE { 
+																		?iAudio nsl:hasBeenProcessed ?tsA ; 
+																			nsl:contains [ rdfs:label "Audio"] 
+																	} 
+																} . 
+																FILTER( ?tsAudio = ?maxTsAudio ) 			 
+															}		
+														} .
+
+														?binItem nsl:hasRelativeIn ?aRin ;
+																nsl:contains [ rdfs:label "Video"].
+
+														#?binItem nsl:alignsWith ?audio .
+														#<%1$s> nsl:hasBinItem|nsl:hasImplicitContent ?binItem .	
+
+														OPTIONAL { ?binItem nsl:hasBeenProcessed ?processed } .
+														FILTER(!BOUND(?processed)) .
+													})""" .
+                                              
+
+
+
+
+###  http://shapeshifting.tv/ontology/production#IDd455aa2badec4e2c8e55bf1fe4c12c7e
+
+production:IDd455aa2badec4e2c8e55bf1fe4c12c7e rdf:type :LayerStructure ,
+                                                       owl:NamedIndividual ;
+                                              
+                                              rdfs:label "ConcertLayers" ;
+                                              
+                                              :hasLayer production:ID0bad82d9d9ca456fb2f99ceb22dcd06f ,
+                                              			production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                              
+                                              :hasLeadingLayer production:ID240b3b62fcca4ba6909151fece1ffa21 ;
+                                                                                                                                         
+                                              :isBinItemOf production:ID70343dcc1c2a4c8f8763addd7270a6dd .
+                                              
+
+
+
+
+###  Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net
+

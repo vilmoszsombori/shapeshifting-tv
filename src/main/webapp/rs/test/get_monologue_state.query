@@ -1,0 +1,23 @@
+PREFIX ta2: <http://www.example.org/TA2.owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+
+
+
+SELECT ?monologue_state ?start_time ?participant
+WHERE 
+{
+ 	
+			
+	 ?dialog_state rdf:type ta2:MonologAVCommunicationState .
+	 ?dialog_state ta2:isCurrentState "true"^^xsd:boolean . 	
+   ?dialog_state ta2:hasStartTime ?start_time .
+   ?dialog_state ta2:hasParticipant ?participant .
+   
+      
+}
+
+ORDER BY DESC (?start_time)
+
+

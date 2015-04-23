@@ -1,0 +1,56 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+
+@prefix core: <http://www.ist-nm2.org/ontology/core#>
+@prefix production: <http://www.ist-nm2.org/ontology/production#>
+@prefix temp: <http://www.ist-nm2.org/ontology/temp#>
+@prefix context: <java:tv.ShapeShift.nsl.functions.> 
+
+[canFollow:
+
+	//(?mo1 temp:isBeingPlayed "true"^^xsd:boolean),
+	(?mo1 rdf:type core:MediaItem),
+	(?mo1 core:contains ?annotation1),
+	(?annotation1 rdfs:label ?instance1), 
+	(?annotation1 rdf:type ?annotationClass1), 
+	(?annotationClass1 rdfs:label "ROUT"),
+
+	(?mo2 rdf:type core:MediaItem),
+	(?mo2 core:contains ?annotation2),
+	(?annotation2 rdfs:label ?instance2), 
+	(?annotation2 rdf:type ?annotationClass2), 
+	(?annotationClass2 rdfs:label "RIN"),
+	
+	equal(?instance1, ?instance2),
+	
+
+  ->
+  
+  	print(?mo2 'can follow' ?mo1),
+  	(?mo2 temp:canFollow ?mo1),
+
+]
+
+[myVideosRelativeIns:
+	(?mo rdf:type core:MediaItem)
+	(?mo core:contains ?annotation)
+	(?annotation rdf:type ?annotationType)
+	(?annotationType rdfs:label "RIN")
+	(?annotation rdfs:label ?label)
+	castAsNumber(?label, ?number)
+	->
+	(?mo core:hasRelativeIn ?number)
+]
+
+[myVideosRelativeOuts:
+	(?mo rdf:type core:MediaItem)
+	(?mo core:contains ?annotation)
+	(?annotation rdf:type ?annotationType)
+	(?annotationType rdfs:label "ROUT")
+	(?annotation rdfs:label ?label)
+	castAsNumber(?label, ?number)
+	->
+	(?mo core:hasRelativeOut ?number)
+]
+

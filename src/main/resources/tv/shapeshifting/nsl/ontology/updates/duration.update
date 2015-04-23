@@ -1,0 +1,7 @@
+PREFIX nsl: <http://shapeshifting.tv/ontology/nsl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+DELETE {  <%1$s> nsl:hasDuration ?val }
+WHERE  { <%1$s> nsl:hasDuration ?val } ;
+
+INSERT DATA {  <%1$s> nsl:hasDuration "%2$s"^^xsd:long }
